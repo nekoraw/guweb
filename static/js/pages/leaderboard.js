@@ -22,18 +22,20 @@ new Vue({
             this.$set(this, 'mods', mods);
             this.$set(this, 'sort', sort);
         },
-        LoadLeaderboard(sort, mode, mods) {
+        LoadLeaderboard(sort, mode, mods, state) {
             if (window.event)
                 window.event.preventDefault();
 
-            window.history.replaceState('', document.title, `/leaderboard/${this.mode}/${this.sort}/${this.mods}`);
+            window.history.replaceState('', document.title, `/leaderboard/${this.mode}/${this.sort}/${this.mods}/${this.state}`);
             this.$set(this, 'mode', mode);
             this.$set(this, 'mods', mods);
             this.$set(this, 'sort', sort);
+            this.$set(this, 'state', state);
             this.$set(this, 'load', true);
             this.$axios.get(`${window.location.protocol}//api.${domain}/get_leaderboard`, { params: {
                 mode: this.StrtoGulagInt(),
-                sort: this.sort
+                sort: this.sort,
+                country: this.state
             }}).then(res => {
                 this.boards = res.data.leaderboard;
                 this.$set(this, 'load', false);
