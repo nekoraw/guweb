@@ -8,6 +8,7 @@ new Vue({
             mode : 'std',
             mods : 'vn',
             sort : 'pp',
+            state: '',
             load : false,
             no_player : false, // soon
         };
