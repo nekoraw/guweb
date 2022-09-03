@@ -28,7 +28,6 @@ new Vue({
             if (window.event)
                 window.event.preventDefault();
 
-            window.history.replaceState('', document.title, `/leaderboard/${this.mode}/${this.sort}/${this.mods}/${this.state}`);
             this.$set(this, 'mode', mode);
             this.$set(this, 'mods', mods);
             this.$set(this, 'sort', sort);
@@ -48,6 +47,7 @@ new Vue({
                 this.boards = res.data.leaderboard;
                 this.$set(this, 'load', false);
             });
+            window.history.replaceState('', document.title, `/leaderboard/${this.mode}/${this.sort}/${this.mods}/${this.state}`);
         },
         scoreFormat(score) {
             var addCommas = this.addCommas;
