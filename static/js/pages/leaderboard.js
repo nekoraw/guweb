@@ -33,17 +33,17 @@ new Vue({
             this.$set(this, 'sort', sort);
             this.$set(this, 'state', state);
             this.$set(this, 'load', true);
-            this.$axios.get(`${window.location.protocol}//api.${domain}/get_leaderboard`, { params: {
+
+            let params = {
                 mode: this.StrtoGulagInt(),
                 sort: this.sort,
-                country: (()=>{
-                    if(this.country !== "global") {
-                        return this.country
-                    } else {
-                        return ""
-                    }
-                })(),
-            }}).then(res => {
+            }
+            
+            if (this.country !== "global") {
+                params["country"]  = this.country
+            }
+
+            this.$axios.get(`${window.location.protocol}//api.${domain}/get_leaderboard`, { params }).then(res => {
                 this.boards = res.data.leaderboard;
                 this.$set(this, 'load', false);
             });
