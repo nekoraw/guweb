@@ -21,19 +21,19 @@
     <div class="leaderboard-banner main-banner">
         <div class="main-selector">
             <a class="mode-select" v-bind:class="{ 'active': mode === 'std' }"
-            @click="LoadLeaderboard(sort, 'std', mods)">
+            @click="LoadLeaderboard(sort, 'std', mods, state)">
                 <i class="mode-icon mode-osu"></i><span class="modetext"> osu!</span>
             </a>
             <a class="mode-select" v-bind:class="{ 'active': mode === 'taiko', 'disabled': mods === 'ap' }"
-            @click="LoadLeaderboard(sort, 'taiko', mods)">
+            @click="LoadLeaderboard(sort, 'taiko', mods, state)">
                 <i class="mode-icon mode-taiko"></i><span class="modetext"> osu!taiko</span>
             </a>
             <a class="mode-select" v-bind:class="{ 'active': mode === 'catch', 'disabled': mods === 'ap' }"
-            @click="LoadLeaderboard(sort, 'catch', mods)">
+            @click="LoadLeaderboard(sort, 'catch', mods, state)">
                 <i class="mode-icon mode-catch"></i><span class="modetext"> osu!catch</span>
             </a>
             <a class="mode-select" v-bind:class="{ 'active': mode === 'mania', 'disabled': mods === 'ap' || mods === 'rx' }"
-            @click="LoadLeaderboard(sort, 'mania', mods)">
+            @click="LoadLeaderboard(sort, 'mania', mods, state)">
                 <i class="mode-icon mode-mania"></i><span class="modetext"> osu!mania</span>
             </a>
         </div>
@@ -41,9 +41,9 @@
         <div class="selector">
             <div class="left">
                 <a class="simple-banner-switch" v-bind:class="{ 'active': sort === 'pp' }"
-                @click="LoadLeaderboard('pp', mode, mods, '')">PP</a>
+                @click="LoadLeaderboard('pp', mode, mods, state)">PP</a>
                 <a class="simple-banner-switch" v-bind:class="{ 'active': sort === 'rscore' }"
-                @click="LoadLeaderboard('rscore', mode, mods, '')">Pontuação</a>
+                @click="LoadLeaderboard('rscore', mode, mods, state)">Pontuação</a>
                 <select class="simple-banner-switch"><option value="global">Todos Estados</option>
                     <option value="xx">Estrangeiro</option>
                     <option value="a1" @click="LoadLeaderboard('rscore', mode, mods, 'a1')">Acre</option>
@@ -76,11 +76,11 @@
             </div>
             <div class="right">
                 <a class="simple-banner-switch" v-bind:class=" { 'active': mods === 'vn' }"
-                @click="LoadLeaderboard(sort, mode, 'vn')">Vanilla</a>
+                @click="LoadLeaderboard(sort, mode, 'vn', state)">Vanilla</a>
                 <a class="simple-banner-switch" v-bind:class=" { 'active': mods === 'rx', 'disabled': mode === 'mania' }"
-                @click="LoadLeaderboard(sort, mode, 'rx')">Relax</a>
+                @click="LoadLeaderboard(sort, mode, 'rx', state)">Relax</a>
                 <a class="simple-banner-switch" v-bind:class=" { 'active': mods === 'ap', 'disabled': mode === 'taiko' || mode === 'catch' || mode === 'mania'  }"
-                @click="LoadLeaderboard(sort, mode, 'ap')">Autopilot</a>
+                @click="LoadLeaderboard(sort, mode, 'ap', state)">Autopilot</a>
             </div>
         </div>
     </div>
