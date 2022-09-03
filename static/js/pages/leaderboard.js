@@ -18,7 +18,7 @@ new Vue({
         this.LoadLeaderboard(sort, mode, mods, state);
     },
     methods: {
-        LoadData(mode, mods, sort) {
+        LoadData(mode, mods, sort, state) {
             this.$set(this, 'mode', mode);
             this.$set(this, 'mods', mods);
             this.$set(this, 'sort', sort);
