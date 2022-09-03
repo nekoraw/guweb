@@ -36,7 +36,13 @@ new Vue({
             this.$axios.get(`${window.location.protocol}//api.${domain}/get_leaderboard`, { params: {
                 mode: this.StrtoGulagInt(),
                 sort: this.sort,
-                country: this.state
+                country: (()=>{
+                    if(this.country !== "global") {
+                        return this.country
+                    } else {
+                        return ""
+                    }
+                })(),
             }}).then(res => {
                 this.boards = res.data.leaderboard;
                 this.$set(this, 'load', false);
