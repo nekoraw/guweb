@@ -44,10 +44,10 @@
                 @click="LoadLeaderboard('pp', mode, mods, state)">PP</a>
                 <a class="simple-banner-switch" v-bind:class="{ 'active': sort === 'rscore' }"
                 @click="LoadLeaderboard('rscore', mode, mods, state)">Pontuação</a>
-                <select class="simple-banner-switch" style="opacity: 1; background:none; border:none;">
+                <select class="simple-banner-select">
                     <option value="global" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Todos Estados</option>
                     <!-- Talvez popular essa lista de opcoes com um request no futuro -->
-                    <option value="zz" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Estrangeiro</option>
+                    <option value="zz" @click="LoadLeaderboard('rscore', mode, mods, 'zz')">Estrangeiro</option>
                     <option value="a1" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Acre</option>
                     <option value="a2" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Alagoas</option>
                     <option value="a3" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Amapá</option>
