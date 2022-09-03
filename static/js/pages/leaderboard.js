@@ -8,20 +8,21 @@ new Vue({
             mode : 'std',
             mods : 'vn',
             sort : 'pp',
-            state: '',
+            state: 'global',
             load : false,
             no_player : false, // soon
         };
     },
     created() {
-        this.LoadData(mode, mods, sort);
-        this.LoadLeaderboard(sort, mode, mods);
+        this.LoadData(mode, mods, sort, state);
+        this.LoadLeaderboard(sort, mode, mods, state);
     },
     methods: {
         LoadData(mode, mods, sort) {
             this.$set(this, 'mode', mode);
             this.$set(this, 'mods', mods);
             this.$set(this, 'sort', sort);
+            this.$set(this, 'state', state);
         },
         LoadLeaderboard(sort, mode, mods, state) {
             if (window.event)
