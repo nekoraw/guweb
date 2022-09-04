@@ -44,37 +44,37 @@
                 @click="LoadLeaderboard('pp', mode, mods, state)">PP</a>
                 <a class="simple-banner-switch" v-bind:class="{ 'active': sort === 'rscore' }"
                 @click="LoadLeaderboard('rscore', mode, mods, state)">Pontuação</a>
-                <select class="simple-banner-select">
-                    <option value="global" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Todos Estados</option>
+                <select class="simple-banner-select" @change="LoadLeaderboard('rscore', mode, mods, $event.target.value)">
+                    <option value="global">Todos Estados</option>
                     <!-- Talvez popular essa lista de opcoes com um request no futuro -->
-                    <option value="zz" @click="LoadLeaderboard('rscore', mode, mods, 'zz')">Estrangeiro</option>
-                    <option value="a1" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Acre</option>
-                    <option value="a2" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Alagoas</option>
-                    <option value="a3" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Amapá</option>
-                    <option value="a4" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Amazonas</option>
-                    <option value="b1" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Bahia</option>
-                    <option value="c1" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Ceará</option>
-                    <option value="d1" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Distrito Federal</option>
-                    <option value="e1" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Espírito Santo</option>
-                    <option value="g1" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Goiás</option>
-                    <option value="m1" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Maranhão</option>
-                    <option value="m2" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Mato Grosso</option>
-                    <option value="m3" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Mato Grosso do Sul</option>
-                    <option value="m4" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Minas Gerais</option>
-                    <option value="p1" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Paraná</option>
-                    <option value="p2" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Pará</option>
-                    <option value="p3" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Paraíba</option>
-                    <option value="p4" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Pernambuco</option>
-                    <option value="p5" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Piauí</option>
-                    <option value="r1" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Rio de Janeiro</option>
-                    <option value="r2" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Rio Grande do Norte</option>
-                    <option value="r3" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Rio Grande do Sul</option>
-                    <option value="r4" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Rondônia</option>
-                    <option value="r5" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Roraima</option>
-                    <option value="s1" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Santa Catarina</option>
-                    <option value="s2" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">São Paulo</option>
-                    <option value="s3" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Sergipe</option>
-                    <option value="t1" @click="LoadLeaderboard('rscore', mode, mods, $event.target.value)">Tocantins</option></select>
+                    <option value="zz" >Estrangeiro</option>
+                    <option value="a1">Acre</option>
+                    <option value="a2">Alagoas</option>
+                    <option value="a3">Amapá</option>
+                    <option value="a4">Amazonas</option>
+                    <option value="b1">Bahia</option>
+                    <option value="c1">Ceará</option>
+                    <option value="d1">Distrito Federal</option>
+                    <option value="e1">Espírito Santo</option>
+                    <option value="g1">Goiás</option>
+                    <option value="m1">Maranhão</option>
+                    <option value="m2">Mato Grosso</option>
+                    <option value="m3">Mato Grosso do Sul</option>
+                    <option value="m4">Minas Gerais</option>
+                    <option value="p1">Paraná</option>
+                    <option value="p2">Pará</option>
+                    <option value="p3">Paraíba</option>
+                    <option value="p4">Pernambuco</option>
+                    <option value="p5">Piauí</option>
+                    <option value="r1">Rio de Janeiro</option>
+                    <option value="r2">Rio Grande do Norte</option>
+                    <option value="r3">Rio Grande do Sul</option>
+                    <option value="r4">Rondônia</option>
+                    <option value="r5">Roraima</option>
+                    <option value="s1">Santa Catarina</option>
+                    <option value="s2">São Paulo</option>
+                    <option value="s3">Sergipe</option>
+                    <option value="t1">Tocantins</option></select>
             </div>
             <div class="right">
                 <a class="simple-banner-switch" v-bind:class=" { 'active': mods === 'vn' }"
