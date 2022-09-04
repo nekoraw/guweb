@@ -40,7 +40,7 @@ new Vue({
             }
             
             if (this.country !== "global") {
-                params["country"]  = this.country
+                params.country  = this.country
             }
 
             this.$axios.get(`${window.location.protocol}//api.${domain}/get_leaderboard`, { params }).then(res => {
