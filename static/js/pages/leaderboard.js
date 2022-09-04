@@ -37,10 +37,7 @@ new Vue({
             let params = {
                 mode: this.StrtoGulagInt(),
                 sort: this.sort,
-            }
-            
-            if (this.country !== "global") {
-                params.country  = this.country
+                ...(this.state !== "global" ? {country: this.state} : {} )
             }
 
             this.$axios.get(`${window.location.protocol}//api.${domain}/get_leaderboard`, { params }).then(res => {
