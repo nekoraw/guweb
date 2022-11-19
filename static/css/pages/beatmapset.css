@@ -105,7 +105,7 @@ body {
 }
 
 .map-parameters {
-  margin-top: 1rem;
+  margin-top: auto;
   font-size: 1.25em;
 }
 
@@ -113,7 +113,7 @@ body {
   display: flex;
   gap: 1rem;
 
-  margin-top: auto;
+  margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
