@@ -9,6 +9,7 @@
   let bmId = "{{ bmId }}";
   let extraMode = "{{ extraMode }}";
   let domain = "{{ domain() }}";
+  let beatmapDownloadMirror = "{{ beatmap_download_mirror() }}"
 </script>
 
 <link rel="stylesheet" href="/static/css/pages/leaderboard.css" />
@@ -45,7 +46,7 @@
             <div class="map-buttons">
               <button
                 class="map-button"
-                @click="window.open('https://api.chimu.moe/v1/download/' + currentMap?.set_id)"
+                @click="window.open(`https://${beatmapDownloadMirror}/${currentMap?.set_id}`"
               >
                 Baixar
               </button>
