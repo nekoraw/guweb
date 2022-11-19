@@ -21,6 +21,11 @@ body {
   overflow-y: auto;
 }
 
+.main-block {
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
 .not-exist {
   display: flex;
   flex-direction: column;
@@ -220,7 +225,7 @@ body {
 
 .scores-container {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   background-color: rgb(10, 10, 10);
 
   font-size: 0.5em;
