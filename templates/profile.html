@@ -20,7 +20,7 @@
                     <div class="map-title-block">
                         <div class="map-title">
                             <a class="beatmap-link"
-                                :href="`https://debug.fubi.ca/beatmapsets/${map.beatmap.set_id}/${ModeIntToStr(map.beatmap.mode)}/${map.beatmap.id}`">
+                                :href="`https://${domain}/beatmapsets/${map.beatmap.set_id}/${ModeIntToStr(map.beatmap.mode)}/${map.beatmap.id}`">
                                 <% map.beatmap.artist %> - <% map.beatmap.title %> [<% map.beatmap.version %>]
                             </a>
                             <span>+ <% modsStr(map.mods) %></span>
