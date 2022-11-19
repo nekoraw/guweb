@@ -635,8 +635,4 @@ async def get_profile_background(user_id: int):
 @frontend.route('/beatmapsets/<beatmapset_id>/<mode>/<beatmap_id>')
 @frontend.route('/beatmapsets/<beatmapset_id>/<mode>/<beatmap_id>/<extra_mode>')
 async def beatmapsets(beatmapset_id: int = None, mode: str = None, beatmap_id: int = None, extra_mode:str = "vn"):
-    # bmsId = Beatmapset Id
-    # mode = mode
-    # bmId = Beatmap Id
-    print(beatmapset_id, mode, beatmap_id)
     return await render_template('beatmapset.html', bmsId=beatmapset_id, mode=mode, bmId=beatmap_id, extraMode = extra_mode)
