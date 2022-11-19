@@ -98,11 +98,9 @@ body {
   color: rgb(206, 206, 206);
 }
 
-.map-diff {
-  font-size: 2em;
-}
 
-.music-author {
+
+.music-author,.map-diff {
   font-size: 1.5em;
 }
 
