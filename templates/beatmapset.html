@@ -246,7 +246,7 @@
                 <% Math.round(score.acc * 100) / 100 %>%
               </div>
               <div class="score-score">
-                <% new Intl.NumberFormat().format(score.score) %>
+                <% new Intl.NumberFormat("pt-BR").format(score.score) %>
               </div>
               <div class="score-time-since"><% ParseScoreTime(score.play_time) %> atrás</div>
             </template>
