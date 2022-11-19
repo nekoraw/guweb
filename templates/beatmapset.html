@@ -46,7 +46,7 @@
             <div class="map-buttons">
               <button
                 class="map-button"
-                @click="window.open(`https://${beatmapDownloadMirror}/${currentMap?.set_id}`"
+                @click="window.open(`https://${beatmapDownloadMirror}/${currentMap?.set_id}`)"
               >
                 Baixar
               </button>
@@ -239,7 +239,7 @@
               >
                 <% score.max_combo %>x
               </div>
-              <div class="score-pp"><% Math.round(score.pp) %>pp</div>
+              <div class="score-pp"><% Math.round(score.pp * 100) / 100 %>pp</div>
               <div class="score-acc">
                 <% Math.round(score.acc * 100) / 100 %>%
               </div>
