@@ -96,6 +96,7 @@ body {
 
 .map-creator {
   color: rgb(206, 206, 206);
+  margin-top: auto;
 }
 
 
@@ -105,7 +106,7 @@ body {
 }
 
 .map-parameters {
-  margin-top: auto;
+  
   font-size: 1.25em;
 }
 
