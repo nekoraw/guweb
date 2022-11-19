@@ -143,10 +143,15 @@
           </div>
         </section>
       </div>
-      <img
+      <div
         :src="'https://assets.ppy.sh/beatmaps/' + bmsId + '/covers/cover.jpg'"
         class="image-banner"
-      />
+        :style="`
+          background-image: url('https://assets.ppy.sh/beatmaps/${bmsId}/covers/cover.jpg');
+          background-size:cover;
+          background-position:center;
+        `"
+      ></div>
     </template>
   </div>
   <div class="main-block">
