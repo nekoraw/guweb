@@ -83,7 +83,7 @@ new Vue({
             }
         },
         UpdateStateDropdown() {
-            document.querySelector("#states-dropdown").value = state;
+            document.querySelector("#states-dropdown").value = this.state;
         }
     },
     computed: {}
