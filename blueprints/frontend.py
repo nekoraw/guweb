@@ -2,6 +2,7 @@
 
 __all__ = ()
 
+from typing import Optional
 import bcrypt
 import hashlib
 import os
@@ -634,3 +635,7 @@ async def get_profile_background(user_id: int):
 @frontend.route('/beatmapsets/<beatmapset_id>/<mode>/<beatmap_id>/<extra_mode>')
 async def beatmapsets(beatmapset_id: int = None, mode: str = None, beatmap_id: int = None, extra_mode:str = "vn"):
     return await render_template('beatmapset.html', bmsId=beatmapset_id, mode=mode, bmId=beatmap_id, extraMode = extra_mode)
+
+@frontend.route('/matches/<match_id>')
+async def matches(match_id: Optional[int] = None):
+    return await render_template("match.html", match_id=match_id)
