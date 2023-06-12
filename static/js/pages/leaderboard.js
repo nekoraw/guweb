@@ -17,6 +17,9 @@ new Vue({
         this.LoadData(mode, mods, sort, state);
         this.LoadLeaderboard(sort, mode, mods, state);
     },
+    mounted() {
+        this.UpdateStateDropdown();
+    },
     methods: {
         LoadData(mode, mods, sort, state) {
             this.$set(this, 'mode', mode);
@@ -33,6 +36,8 @@ new Vue({
             this.$set(this, 'sort', sort);
             this.$set(this, 'state', state);
             this.$set(this, 'load', true);
+
+            this.UpdateStateDropdown();
 
             this.$axios.get(`${window.location.protocol}//api.${domain}/v1/get_leaderboard`, { params: {
                 mode: this.StrtoGulagInt(),
@@ -77,6 +82,9 @@ new Vue({
                 default: return -1;
             }
         },
+        UpdateStateDropdown() {
+            document.querySelector("#states-dropdown").value = this.state;
+        }
     },
     computed: {}
 });
