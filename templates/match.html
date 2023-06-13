@@ -28,10 +28,11 @@
 <div id="app" :class="">
   <div class="main-block">
     <template>
-      <h1 id="match-title"><% matchEvents[0].name %></h1>
+      <h1 id="match-title" v-if="matchEvents[0]?.name">
+        <% matchEvents[0].name %>
+      </h1>
       <div id="match-events">
         <div class="match-event" v-for="(event, index) in matchEvents">
-          <div><% event %></div>
           <div class="player-join-event" v-if="(event.type === 'player_join')">
             <span class="match-event-time"><% event.time %></span>
             <p>
@@ -70,7 +71,6 @@
             class="beatmap-play-event"
             v-else-if="(event.type === 'beatmap_play')"
           >
-            <% event %>
             <div
               v-if="(matchBeatmaps?.has(event.bmap_id))"
               class="beatmap-banner"
