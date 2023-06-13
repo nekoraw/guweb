@@ -1,5 +1,6 @@
-{% extends 'base.html' %} {% block title %} Beatmap {{ bmsId }} {% endblock %}
+{% extends 'base.html' %} {% block title %} Match {{ match_id }} {% endblock %}
 {% block header %}
+<!DOCTYPE html>
 <script src="/static/js/asserts/vue.js"></script>
 <script src="/static/js/asserts/vue-axios.js"></script>
 <script src="/static/js/asserts/day-js/dayjs.min.js"></script>
@@ -10,12 +11,109 @@
 <!-- <meta http-equiv="refresh" content="1"> -->
 <script>
   let matchId = "{{ match_id }}";
+  let domain = "{{ domain() }}";
+  let appName = "{{ appName() }}";
+  let beatmapDownloadMirror = "{{ beatmap_download_mirror() }}";
+
   dayjs.extend(window.dayjs_plugin_relativeTime);
   dayjs.extend(window.dayjs_plugin_utc);
   dayjs.locale("pt-br");
 </script>
 
 <link rel="stylesheet" href="/static/css/pages/leaderboard.css" />
-<link rel="stylesheet" href="/static/css/pages/beatmapset.css" />
+<link rel="stylesheet" href="/static/css/pages/match.css" />
 
+{% endblock %} {% block content %}
+
+<div id="app" :class="">
+  <div class="main-block">
+    <template>
+      <h1 id="match-title"><% matchEvents[0].name %></h1>
+      <div id="match-events">
+        <div class="match-event" v-for="(event, index) in matchEvents">
+          <div><% event %></div>
+          <div class="player-join-event" v-if="(event.type === 'player_join')">
+            <span class="match-event-time"><% event.time %></span>Jogador
+            <a :href="`/u/${event.player_id}`"><% event.player_name %></a> se
+            juntou ao lobby.
+          </div>
+          <div
+            class="match-created-event"
+            v-else-if="(event.type === 'match_created')"
+          >
+            <span class="match-event-time"><% event.time %></span>A partida foi
+            criada.
+          </div>
+          <!-- host-change-event -->
+          <div
+            class="match-created-event"
+            v-else-if="(event.type === 'change_host')"
+          >
+            <span class="match-event-time"><% event.time %></span>O host foi
+            trocado de
+            <a :href="`/u/${event.old_player}`"><% event.old_player_name %></a>
+            para
+            <a :href="`/u/${event.new_player}`"><% event.new_player_name %></a>
+            .
+          </div>
+          <!-- beatmap-play-event -->
+          <div
+            class="beatmap-play-event"
+            v-else-if="(event.type === 'beatmap_play')"
+          >
+            <div v-if="(matchBeatmaps)" class="beatmap-banner">
+              <img
+                v-if="(matchBeatmaps.has(event.bmap_id))"
+                :src="`https://assets.ppy.sh/beatmaps/${matchBeatmaps.get(event.bmap_id).set_id}/covers/cover@2x.jpg`"
+                alt=""
+              />
+            </div>
+            <div
+              :class="`play-score ${index === 0 && 'first-place-score'}`"
+              v-for="(score, index) in event.scores"
+            >
+              <span class="score-colocation">#<% index + 1 %></span>
+              <img
+                class="score-pfp"
+                :src="`https://a.${domain}/${score.player_id}`"
+                alt=""
+              />
+              <div>
+                <h2>
+                  <a :href="`/u/${score.player_id}`"><% score.player_name %></a>
+                </h2>
+                <div
+                  class="player-flag"
+                  v-if="matchUsers.has(score.player_id)"
+                  :style="`background-image:url('/static/images/flags/${matchUsers.get(score.player_id).country.toUpperCase()}.png'); margin-right:0`"
+                >
+                  <div class="flag-dropdown">
+                    <%
+                    flags[matchUsers.get(score.player_id)?.country.toUpperCase()]
+                    %>
+                  </div>
+                </div>
+              </div>
+              <% score %>
+            </div>
+          </div>
+          <div
+            class="player-leave-event"
+            v-if="(event.type === 'player_leave')"
+          >
+            <span class="match-event-time"><% event.time %></span>Jogador
+            <a :href="`/u/${event.player_id}`"><% event.player_name %></a>
+            deixou a partida.
+          </div>
+          <div class="match-ended-event" v-if="(event.type === 'lobby_close')">
+            <span class="match-event-time"><% event.time %></span>A partida
+            terminou.
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+</div>
+<script src="/static/js/asserts/vue-flags.js"></script>
+<script src="/static/js/pages/matches.js"></script>
 {% endblock %}
