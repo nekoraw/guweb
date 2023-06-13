@@ -193,7 +193,8 @@ new Vue({
         this.$set(this, "mode", currentMap.mode);
       }
       this.UpdateUrl();
-      document.title = currentMap.title;
+      // PSYQUI feat. mikanzil - Bye or not · beatmap | takuji
+      document.title = `${currentMap.artist} - ${currentMap.title} · beatmap | ${appName}`;
     },
     AddMode(mode) {
       if (!this.modes.includes(mode)) {
