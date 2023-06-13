@@ -67,11 +67,61 @@ body {
   flex-direction: column;
 }
 
+.beatmap-banner {
+  position: relative;
+}
 .beatmap-banner > img {
   object-fit: cover;
   width: 100%;
   height: 20rem;
   border-radius: 0.25rem;
+}
+.beatmap-banner-overlay {
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+}
+.banner-overlay-top {
+  display: flex;
+  margin-bottom: auto;
+  width: 100%;
+  justify-content: space-between;
+}
+.banner-overlay-bottom {
+  display: flex;
+  margin-top: auto;
+  width: 100%;
+  justify-content: space-between;
+}
+.banner-overlay-button {
+  padding: 0.5rem;
+  background-color: #404040;
+  color: white;
+  border-radius: 0.25rem;
+}
+
+.overlay-beatmap-title {
+  font-size: 1.75em;
+}
+.overlay-beatmap-version {
+  font-size: 1.5em;
+}
+.overlay-beatmap-gamemode {
+  text-transform: capitalize;
+}
+.overlay-beatmap-sr {
+  font-size: 1.5em;
+  color: rgb(255, 213, 98);
+}
+.overlay-win-condition {
+  font-size: 1.5em;
+  text-transform: capitalize;
 }
 
 .play-score {
