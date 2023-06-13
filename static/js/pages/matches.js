@@ -20,10 +20,6 @@ new Vue({
       this.$set(this, "matchEvents", response.data.match);
 
       this.setupPageMetadata();
-      const teste = await Promise.all([
-        this.getMatchBeatmaps(),
-        this.getMatchPlayers(),
-      ]);
       console.log(this.matchUsers, this.matchBeatmaps);
     },
     async getMatchPlayers() {

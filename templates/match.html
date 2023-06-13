@@ -63,8 +63,7 @@
           >
             <div v-if="(matchBeatmaps)" class="beatmap-banner">
               <img
-                v-if="(matchBeatmaps.has(event.bmap_id))"
-                :src="`https://assets.ppy.sh/beatmaps/${matchBeatmaps.get(event.bmap_id).set_id}/covers/cover@2x.jpg`"
+                :src="`https://assets.ppy.sh/beatmaps/${event.bmapset_id}/covers/cover@2x.jpg`"
                 alt=""
               />
             </div>
@@ -84,13 +83,10 @@
                 </h2>
                 <div
                   class="player-flag"
-                  v-if="matchUsers.has(score.player_id)"
-                  :style="`background-image:url('/static/images/flags/${matchUsers.get(score.player_id).country.toUpperCase()}.png'); margin-right:0`"
+                  :style="`background-image:url('/static/images/flags/${score.player_country.toUpperCase()}.png'); margin-right:0`"
                 >
                   <div class="flag-dropdown">
-                    <%
-                    flags[matchUsers.get(score.player_id)?.country.toUpperCase()]
-                    %>
+                    <% flags[score.player_country.toUpperCase()] %>
                   </div>
                 </div>
               </div>
