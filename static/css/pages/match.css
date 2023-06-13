@@ -124,7 +124,20 @@ body {
   text-transform: capitalize;
 }
 
+.team-holder {
+  display: flex;
+  gap: 0.25rem;
+  width: 100%;
+}
+.blue-team-holder,
+.red-team-holder {
+  width: 100%;
+  display: flex;
+  gap: 0.25rem;
+}
+
 .play-score {
+  width: 100%;
   display: flex;
   gap: 0.5rem;
 
@@ -133,6 +146,13 @@ body {
   padding: 1rem;
   background: #343434;
   border-radius: 0.25rem;
+}
+
+.red-team-holder > .play-score {
+  background: #5b3434;
+}
+.blue-team-holder > .play-score {
+  background: #343d5b;
 }
 
 .score-colocation {
