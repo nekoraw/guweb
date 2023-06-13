@@ -117,20 +117,65 @@
                 :src="`https://a.${domain}/${score.player_id}`"
                 alt=""
               />
-              <div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                "
+              >
                 <h2>
-                  <a :href="`/u/${score.player_id}`"><% score.player_name %></a>
+                  <a :href="`/u/${score.player_id}`" class="score-player-name"
+                    ><% score.player_name %></a
+                  >
                 </h2>
-                <div
-                  class="player-flag"
-                  :style="`background-image:url('/static/images/flags/${score.player_country.toUpperCase()}.png'); margin-right:0`"
-                >
-                  <div class="flag-dropdown">
-                    <% flags[score.player_country.toUpperCase()] %>
+                <div style="display: flex; gap: 0.25rem">
+                  <div
+                    class="player-flag"
+                    :style="`background-image:url('/static/images/flags/${score.player_country.toUpperCase()}.png'); margin-right:0`"
+                  >
+                    <div class="flag-dropdown">
+                      <% flags[score.player_country.toUpperCase()] %>
+                    </div>
                   </div>
+                  <span>+<% score.used_mods.replace("V2", "") %></span>
                 </div>
               </div>
-              <% score %>
+              <div style="margin-left: auto; text-align: right">
+                <p
+                  :class="`score-score ${(event.win_condition === 'score' || event.win_condition === 'scorev2') && 'win-condition'}`"
+                >
+                  <% score.score.toLocaleString() %>
+                </p>
+                <div style="display: flex; gap: 0.5rem">
+                  <p
+                    :class="`score-max-combo ${event.win_condition === 'combo' && 'win-condition'}`"
+                  >
+                    <% score.max_combo.toLocaleString() %>x
+                  </p>
+
+                  <p
+                    :class="`score-acc ${event.win_condition === 'accuracy' && 'win-condition'}`"
+                  >
+                    <% score.accuracy.toFixed(2) %>%
+                  </p>
+                </div>
+              </div>
+
+              <!-- <% score %> -->
+            </div>
+            <div
+              v-if="(event.team_type === 'team_vs')"
+              class="team-points-container"
+            >
+              <div class="team-points">
+                <p class="points-text">Pontos da equipe Vermelha</p>
+                <p class="red-points"><% event.redTeamPoints %></p>
+              </div>
+              <div class="team-points">
+                <p class="points-text">Pontos da equipe Azul</p>
+                <p class="blue-points"><% event.blueTeamPoints %></p>
+              </div>
             </div>
           </div>
           <div

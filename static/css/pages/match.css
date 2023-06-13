@@ -128,7 +128,8 @@ body {
   display: flex;
   gap: 0.5rem;
 
-  width: 100%;
+  max-height: 75px;
+
   padding: 1rem;
   background: #343434;
   border-radius: 0.25rem;
@@ -143,13 +144,31 @@ body {
 }
 
 .score-pfp {
-  width: 4rem;
   aspect-ratio: 1;
   border-radius: 0.25rem;
 }
-
+.score-player-name {
+  font-size: 1.25em;
+}
 .first-place-score {
-  background: linear-gradient(to right, #2b5724, #343434);
+  background: linear-gradient(to right, #456640, #414a40);
+}
+
+.win-condition {
+  color: #b1fffa;
+}
+
+.team-points-container {
+  display: flex;
+  justify-content: space-between;
+}
+.team-points > .points-text {
+  color: rgba(255, 255, 255, 0.7);
+}
+.team-points > .blue-points,
+.team-points > .red-points {
+  color: white;
+  text-align: center;
 }
 
 .flex-col {

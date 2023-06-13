@@ -1,3 +1,48 @@
+function getScorePoints(score, win_condition) {
+  switch (win_condition) {
+    case "accuracy":
+      return score.accuracy;
+    case "combo":
+      return score.combo;
+    case "scorev2":
+    case "score":
+      return score.score;
+  }
+}
+
+function sortMatchScores(scores, win_condition) {
+  return scores.sort((a, b) => {
+    return getScorePoints(b, win_condition) - getScorePoints(a, win_condition);
+  });
+}
+
+function sortMatchTeams(event) {
+  const newEvent = event;
+  if (event.team_type === "head_to_head") {
+    newEvent.scores = sortMatchScores(newEvent.scores, event.win_condition);
+    return newEvent;
+  }
+  newEvent.redTeam = [];
+  newEvent.redTeamPoints = 0;
+
+  newEvent.blueTeam = [];
+  newEvent.blueTeamPoints = 0;
+
+  event.scores.forEach((score) => {
+    if (score.player_team === "red") {
+      newEvent.redTeamPoints += getScorePoints(score, event.win_condition);
+      return newEvent.redTeam.push(score);
+    }
+    newEvent.blueTeamPoints += getScorePoints(score, event.win_condition);
+    newEvent.blueTeam.push(score);
+  });
+
+  newEvent.redTeam = sortMatchScores(newEvent.redTeam, event.win_condition);
+  newEvent.blueTeam = sortMatchScores(newEvent.blueTeam, event.win_condition);
+
+  return newEvent;
+}
+
 new Vue({
   el: "#app",
   delimiters: ["<%", "%>"],
@@ -17,7 +62,12 @@ new Vue({
       const response = await this.$axios.get(
         `https://api.takuji.nkrw.dev/v1/get_match?id=${matchId}`
       );
-      this.$set(this, "matchEvents", response.data.match);
+      const matchEvents = response.data.match.map((event) => {
+        if (event.type !== "beatmap_play") return event;
+        return sortMatchTeams(event);
+      });
+      this.$set(this, "matchEvents", matchEvents);
+      console.log(this.matchEvents);
 
       this.setupPageMetadata();
       await this.getMatchBeatmaps();
