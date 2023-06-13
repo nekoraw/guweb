@@ -20,7 +20,8 @@ new Vue({
       this.$set(this, "matchEvents", response.data.match);
 
       this.setupPageMetadata();
-      console.log(this.matchUsers, this.matchBeatmaps);
+      await this.getMatchBeatmaps();
+      console.log(this.matchBeatmaps);
     },
     async getMatchPlayers() {
       const matchUsers = new Map();
