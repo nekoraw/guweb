@@ -110,18 +110,18 @@ Vue.component("score-card", {
           justify-content: center;
         "
       >
-        <h2>
+        <p>
           <a
             :href="\`/u/\${score.player_id}\`"
             class="score-player-name"
             ><% score.player_name %></a
           >
-        </h2>
-        <div style="display: flex; gap: 0.25rem">
+        </p>
+        <div style="display: flex; gap: 0.25rem; min-height:14px">
           <a :href="\`/leaderboard/\${gamemode}/pp/\${score.used_mods.toLowerCase().includes('rx') ? 'rx' : 'vn'}/\${score.player_country.toLowerCase()}\`">
             <div
               class="player-flag"
-              :style="\`background-image:url('/static/images/flags/\${score.player_country.toUpperCase()}.png'); margin-right:0\`"
+              :style="\`background-image:url('/static/images/flags/\${score.player_country.toUpperCase()}.png'); margin-right:0; width:20px; height:14px;\`"
             >
               <div class="flag-dropdown">
                 <% flags[score.player_country.toUpperCase()] %>
