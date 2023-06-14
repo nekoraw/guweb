@@ -1,3 +1,18 @@
+function parseGamemode(gamemode) {
+  console.log(gamemode);
+  switch (gamemode.toLowerCase()) {
+    case "vanilla_osu":
+      return "std";
+    case "vanilla_catch":
+    case "vanilla_fruits":
+      return "catch";
+    case "vanilla_taiko":
+      return "taiko";
+    case "vanilla_mania":
+      return "mania";
+  }
+}
+
 function getScorePoints(score, win_condition) {
   switch (win_condition) {
     case "accuracy":
@@ -75,7 +90,7 @@ function addEventParams(event) {
   return addTeamVSParams(event);
 }
 Vue.component("score-card", {
-  props: ["score", "index", "winCondition", "customClass"],
+  props: ["score", "index", "winCondition", "gamemode", "customClass"],
   delimiters: ["<%", "%>"],
 
   template: `
@@ -103,14 +118,16 @@ Vue.component("score-card", {
           >
         </h2>
         <div style="display: flex; gap: 0.25rem">
-          <div
-            class="player-flag"
-            :style="\`background-image:url('/static/images/flags/\${score.player_country.toUpperCase()}.png'); margin-right:0\`"
-          >
-            <div class="flag-dropdown">
-              <% flags[score.player_country.toUpperCase()] %>
+          <a :href="\`/leaderboard/\${gamemode}/pp/\${score.mods.toLowerCase().includes("rx") ? "rx" : "vn"}/\${score.player_country.toLowerCase()}\`">
+            <div
+              class="player-flag"
+              :style="\`background-image:url('/static/images/flags/\${score.player_country.toUpperCase()}.png'); margin-right:0\`"
+            >
+              <div class="flag-dropdown">
+                <% flags[score.player_country.toUpperCase()] %>
+              </div>
             </div>
-          </div>
+          </a>
           <p v-if="score.used_mods.replace('V2', '').length > 0">+<% score.used_mods.replace("V2", "") %></p>
         </div>
       </div>

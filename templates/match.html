@@ -122,6 +122,7 @@
                     v-for="(score, index) in event.redTeam"
                     :score="score"
                     :index="index"
+                    :gamemode="parseGamemode(event.gamemode)"
                     :win-condition="event.win_condition"
                   ></score-card>
                 </div>
@@ -134,6 +135,7 @@
                     v-for="(score, index) in event.blueTeam"
                     :score="score"
                     :index="index"
+                    :gamemode="parseGamemode(event.gamemode)"
                     :win-condition="event.win_condition"
                   ></score-card>
                 </div>
@@ -145,6 +147,7 @@
                   :custom-class="(index === 0 ? 'first-place-score' : 'teste')"
                   :score="score"
                   :index="index"
+                  :gamemode="parseGamemode(event.gamemode)"
                   :win-condition="event.win_condition"
                 ></score-card>
               </template>
