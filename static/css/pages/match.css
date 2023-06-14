@@ -105,6 +105,10 @@ body {
   color: white;
   border-radius: 0.25rem;
 }
+.banner-overlay-button:hover {
+  background-color: #505050;
+  color: white;
+}
 
 .overlay-beatmap-title {
   font-size: 1.75em;
