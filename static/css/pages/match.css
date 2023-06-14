@@ -126,7 +126,7 @@ body {
 
 .team-holder {
   display: flex;
-  gap: 0.25rem;
+  gap: 0.5rem;
   width: 100%;
 }
 .blue-team-holder,
@@ -134,7 +134,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 0.25rem;
+  gap: 0.5rem;
 }
 
 .play-score {
@@ -214,11 +214,7 @@ body {
   .play-score,
   .beatmap-banner > img,
   .beatmap-banner-overlay,
-  .player-join-event,
-  .match-created-event,
-  .player-leave-event,
-  .match-ended-event,
-  .beatmap-play-event {
+  .match-event > div {
     border-radius: 0;
   }
 }
