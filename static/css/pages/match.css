@@ -199,6 +199,8 @@ body {
   gap: 0.5rem;
 }
 .team-points {
+  background-color: rgb(55, 55, 55);
+  border-radius: 0.25rem;
   padding: 0.5rem;
   width: 100%;
   text-align: center;
