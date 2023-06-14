@@ -182,7 +182,7 @@ body {
 
 .team-points-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .team-points > .points-text {
   color: rgba(255, 255, 255, 0.7);
