@@ -42,6 +42,77 @@ function sortMatchTeams(event) {
 
   return newEvent;
 }
+Vue.component("score-card", {
+  props: ["score", "index", "winCondition", "customClass"],
+  delimiters: ["<%", "%>"],
+
+  template: `
+    <div
+      :class="\`play-score \${customClass}\`"
+    >
+      <span class="score-colocation">#<% index + 1 %></span>
+      <img
+        class="score-pfp"
+        :src="\`https://a.\${domain}/\${score.player_id}\`"
+        alt=""
+      />
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        "
+      >
+        <h2>
+          <a
+            :href="\`/u/\${score.player_id}\`"
+            class="score-player-name"
+            ><% score.player_name %></a
+          >
+        </h2>
+        <div style="display: flex; gap: 0.25rem">
+          <div
+            class="player-flag"
+            :style="\`background-image:url('/static/images/flags/\${score.player_country.toUpperCase()}.png'); margin-right:0\`"
+          >
+            <div class="flag-dropdown">
+              <% flags[score.player_country.toUpperCase()] %>
+            </div>
+          </div>
+          <p v-if="score.used_mods.replace('V2', '').length > 0">+<% score.used_mods.replace("V2", "") %></p>
+        </div>
+      </div>
+      <div style="margin-left: auto; text-align: right">
+        <p
+          :class="\`score-score \${
+            (winCondition === 'score' ||
+            winCondition === 'scorev2') &&
+            'win-condition'
+          }\`"
+        >
+          <% score.score.toLocaleString() %>
+        </p>
+        <div style="display: flex; gap: 0.5rem">
+       
+          <p
+            :class="\`score-max-combo \${
+              winCondition === 'combo' && 'win-condition'
+            }\`"
+          >
+            <% score.max_combo.toLocaleString() %>x
+          </p>
+
+          <p
+            :class="\`score-acc \${
+              winCondition === 'accuracy' && 'win-condition'
+            }\`"
+          >
+            <% score.accuracy.toFixed(2) %>%
+          </p>
+        </div>
+      </div>
+  `,
+});
 
 new Vue({
   el: "#app",

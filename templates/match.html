@@ -117,193 +117,35 @@
               <div class="team-holder" v-if="event.team_type === 'team_vs'">
                 <!-- RED TEAM HOLDER -->
                 <div v-if="(event.redTeam.length > 0)" class="red-team-holder">
-                  <div
-                    :class="`play-score`"
+                  <score-card
                     v-for="(score, index) in event.redTeam"
-                  >
-                    <span class="score-colocation">#<% index + 1 %></span>
-                    <img
-                      class="score-pfp"
-                      :src="`https://a.${domain}/${score.player_id}`"
-                      alt=""
-                    />
-                    <div
-                      style="
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                      "
-                    >
-                      <h2>
-                        <a
-                          :href="`/u/${score.player_id}`"
-                          class="score-player-name"
-                          ><% score.player_name %></a
-                        >
-                      </h2>
-                      <div style="display: flex; gap: 0.25rem">
-                        <div
-                          class="player-flag"
-                          :style="`background-image:url('/static/images/flags/${score.player_country.toUpperCase()}.png'); margin-right:0`"
-                        >
-                          <div class="flag-dropdown">
-                            <% flags[score.player_country.toUpperCase()] %>
-                          </div>
-                        </div>
-                        <span>+<% score.used_mods.replace("V2", "") %></span>
-                      </div>
-                    </div>
-                    <div style="margin-left: auto; text-align: right">
-                      <p
-                        :class="`score-score ${(event.win_condition === 'score' || event.win_condition === 'scorev2') && 'win-condition'}`"
-                      >
-                        <% score.score.toLocaleString() %>
-                      </p>
-                      <div style="display: flex; gap: 0.5rem">
-                        <p
-                          :class="`score-max-combo ${event.win_condition === 'combo' && 'win-condition'}`"
-                        >
-                          <% score.max_combo.toLocaleString() %>x
-                        </p>
-
-                        <p
-                          :class="`score-acc ${event.win_condition === 'accuracy' && 'win-condition'}`"
-                        >
-                          <% score.accuracy.toFixed(2) %>%
-                        </p>
-                      </div>
-                    </div>
-
-                    <!-- <% score %> -->
-                  </div>
+                    :score="score"
+                    :index="index"
+                    :win-condition="event.win_condition"
+                  ></score-card>
                 </div>
                 <!-- BLUE TEAM HOLDER -->
                 <div
                   v-if="(event.blueTeam.length > 0)"
                   class="blue-team-holder"
                 >
-                  <div
-                    :class="`play-score`"
+                  <score-card
                     v-for="(score, index) in event.blueTeam"
-                  >
-                    <span class="score-colocation">#<% index + 1 %></span>
-                    <img
-                      class="score-pfp"
-                      :src="`https://a.${domain}/${score.player_id}`"
-                      alt=""
-                    />
-                    <div
-                      style="
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                      "
-                    >
-                      <h2>
-                        <a
-                          :href="`/u/${score.player_id}`"
-                          class="score-player-name"
-                          ><% score.player_name %></a
-                        >
-                      </h2>
-                      <div style="display: flex; gap: 0.25rem">
-                        <div
-                          class="player-flag"
-                          :style="`background-image:url('/static/images/flags/${score.player_country.toUpperCase()}.png'); margin-right:0`"
-                        >
-                          <div class="flag-dropdown">
-                            <% flags[score.player_country.toUpperCase()] %>
-                          </div>
-                        </div>
-                        <span>+<% score.used_mods.replace("V2", "") %></span>
-                      </div>
-                    </div>
-                    <div style="margin-left: auto; text-align: right">
-                      <p
-                        :class="`score-score ${(event.win_condition === 'score' || event.win_condition === 'scorev2') && 'win-condition'}`"
-                      >
-                        <% score.score.toLocaleString() %>
-                      </p>
-                      <div style="display: flex; gap: 0.5rem">
-                        <p
-                          :class="`score-max-combo ${event.win_condition === 'combo' && 'win-condition'}`"
-                        >
-                          <% score.max_combo.toLocaleString() %>x
-                        </p>
-
-                        <p
-                          :class="`score-acc ${event.win_condition === 'accuracy' && 'win-condition'}`"
-                        >
-                          <% score.accuracy.toFixed(2) %>%
-                        </p>
-                      </div>
-                    </div>
-
-                    <!-- <% score %> -->
-                  </div>
+                    :score="score"
+                    :index="index"
+                    :win-condition="event.win_condition"
+                  ></score-card>
                 </div>
               </div>
               <!-- CARDS FOR head_vs -->
               <template v-else>
-                <div
-                  :class="`play-score ${index === 0 && 'first-place-score'}`"
+                <score-card
                   v-for="(score, index) in event.scores"
-                >
-                  <span class="score-colocation">#<% index + 1 %></span>
-                  <img
-                    class="score-pfp"
-                    :src="`https://a.${domain}/${score.player_id}`"
-                    alt=""
-                  />
-                  <div
-                    style="
-                      display: flex;
-                      flex-direction: column;
-                      justify-content: center;
-                    "
-                  >
-                    <h2>
-                      <a
-                        :href="`/u/${score.player_id}`"
-                        class="score-player-name"
-                        ><% score.player_name %></a
-                      >
-                    </h2>
-                    <div style="display: flex; gap: 0.25rem">
-                      <div
-                        class="player-flag"
-                        :style="`background-image:url('/static/images/flags/${score.player_country.toUpperCase()}.png'); margin-right:0`"
-                      >
-                        <div class="flag-dropdown">
-                          <% flags[score.player_country.toUpperCase()] %>
-                        </div>
-                      </div>
-                      <span>+<% score.used_mods.replace("V2", "") %></span>
-                    </div>
-                  </div>
-                  <div style="margin-left: auto; text-align: right">
-                    <p
-                      :class="`score-score ${(event.win_condition === 'score' || event.win_condition === 'scorev2') && 'win-condition'}`"
-                    >
-                      <% score.score.toLocaleString() %>
-                    </p>
-                    <div style="display: flex; gap: 0.5rem">
-                      <p
-                        :class="`score-max-combo ${event.win_condition === 'combo' && 'win-condition'}`"
-                      >
-                        <% score.max_combo.toLocaleString() %>x
-                      </p>
-
-                      <p
-                        :class="`score-acc ${event.win_condition === 'accuracy' && 'win-condition'}`"
-                      >
-                        <% score.accuracy.toFixed(2) %>%
-                      </p>
-                    </div>
-                  </div>
-
-                  <!-- <% score %> -->
-                </div>
+                  :custom-class="(index === 0 ? 'first-place-score' : 'teste')"
+                  :score="score"
+                  :index="index"
+                  :win-condition="event.win_condition"
+                ></score-card>
               </template>
             </template>
 
