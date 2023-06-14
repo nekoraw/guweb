@@ -88,7 +88,7 @@
                         [<% matchBeatmaps.get(event.bmap_id).version %>]
                       </p>
                       <p class="overlay-beatmap-gamemode">
-                        <% event.gamemode.toLowerCase().replace("_", " ") %>
+                        <%event.gamemode.toLowerCase().replace("_","").replace("vanilla","")%>
                       </p>
                     </div>
                     <p class="overlay-beatmap-sr">
