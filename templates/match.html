@@ -34,8 +34,8 @@
       <div id="match-events">
         <div class="match-event" v-for="(event, index) in matchEvents">
           <div class="player-join-event" v-if="(event.type === 'player_join')">
-            <span class="match-event-time"><% event.time %></span>
-            <p>
+            <p style="text-align: center; width: 100%">
+              <span class="match-event-time"><% event.time %></span>
               Jogador
               <a :href="`/u/${event.player_id}`"><% event.player_name %></a> se
               juntou ao lobby.
@@ -45,16 +45,18 @@
             class="match-created-event"
             v-else-if="(event.type === 'match_created')"
           >
-            <span class="match-event-time"><% event.time %></span>
-            <p>A partida foi criada.</p>
+            <p style="text-align: center; width: 100%">
+              <span class="match-event-time"><% event.time %></span>
+              A partida foi criada.
+            </p>
           </div>
           <!-- host-change-event -->
           <div
             class="match-created-event"
             v-else-if="(event.type === 'change_host')"
           >
-            <span class="match-event-time"><% event.time %></span>
-            <p>
+            <p style="text-align: center; width: 100%">
+              <span class="match-event-time"><% event.time %></span>
               O host foi trocado de
               <a :href="`/u/${event.old_player}`"
                 ><% event.old_player_name %></a
@@ -107,7 +109,9 @@
               />
             </div>
             <template v-if="(event.scores.length === 0)">
-              <p style="font-size: 1em; text-align: center; padding:0.5rem">Mapa abortado...</p>
+              <p style="font-size: 1em; text-align: center; padding: 0.5rem">
+                Mapa abortado...
+              </p>
             </template>
             <template v-else>
               <!-- TEAMS HOLDER FOR team_vs -->
@@ -191,16 +195,18 @@
             class="player-leave-event"
             v-if="(event.type === 'player_leave')"
           >
-            <span class="match-event-time"><% event.time %></span>
-            <p>
+            <p style="text-align: center; width: 100%">
+              <span class="match-event-time"><% event.time %></span>
               Jogador
               <a :href="`/u/${event.player_id}`"><% event.player_name %></a>
               deixou a partida.
             </p>
           </div>
           <div class="match-ended-event" v-if="(event.type === 'lobby_close')">
-            <span class="match-event-time"><% event.time %></span>
-            <p>A partida terminou.</p>
+            <p style="text-align: center; width: 100%">
+              <span class="match-event-time"><% event.time %></span> A partida
+              terminou.
+            </p>
           </div>
         </div>
       </div>
