@@ -118,7 +118,7 @@ Vue.component("score-card", {
           >
         </h2>
         <div style="display: flex; gap: 0.25rem">
-          <a :href="\`/leaderboard/\${gamemode}/pp/\${score.mods.toLowerCase().includes("rx") ? "rx" : "vn"}/\${score.player_country.toLowerCase()}\`">
+          <a :href="\`/leaderboard/\${gamemode}/pp/\${score.mods.toLowerCase().includes('rx') ? 'rx' : 'vn'}/\${score.player_country.toLowerCase()}\`">
             <div
               class="player-flag"
               :style="\`background-image:url('/static/images/flags/\${score.player_country.toUpperCase()}.png'); margin-right:0\`"
