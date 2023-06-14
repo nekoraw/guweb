@@ -198,6 +198,11 @@ body {
   justify-content: space-evenly;
   gap: 0.5rem;
 }
+.team-points {
+  padding: 0.5rem;
+  width: 100%;
+  text-align: center;
+}
 .team-points > .points-text {
   color: rgba(255, 255, 255, 0.7);
 }
@@ -205,6 +210,14 @@ body {
 .team-points > .red-points {
   color: white;
   text-align: center;
+}
+
+.beatmap-play-winner {
+  padding: 0.5rem;
+  text-align: center;
+}
+.won-by {
+  font-weight: bold;
 }
 
 .flex-col {
