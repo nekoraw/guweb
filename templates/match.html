@@ -76,30 +76,30 @@
               class="beatmap-banner"
             >
               <a :href="`/beatmaps/${event.bmap_id}`">
-              <div class="beatmap-banner-overlay">
-                <div class="banner-overlay-top">
-                  <div>
-                    <p class="overlay-beatmap-title">
-                      <% matchBeatmaps.get(event.bmap_id).title %>
-                    </p>
-                    <p class="overlay-beatmap-version">
-                      [<% matchBeatmaps.get(event.bmap_id).version %>]
-                    </p>
-                    <p class="overlay-beatmap-gamemode">
-                      <% event.gamemode.toLowerCase().replace("_", " ") %>
+                <div class="beatmap-banner-overlay">
+                  <div class="banner-overlay-top">
+                    <div>
+                      <p class="overlay-beatmap-title">
+                        <% matchBeatmaps.get(event.bmap_id).title %>
+                      </p>
+                      <p class="overlay-beatmap-version">
+                        [<% matchBeatmaps.get(event.bmap_id).version %>]
+                      </p>
+                      <p class="overlay-beatmap-gamemode">
+                        <% event.gamemode.toLowerCase().replace("_", " ") %>
+                      </p>
+                    </div>
+                    <p class="overlay-beatmap-sr">
+                      <% matchBeatmaps.get(event.bmap_id).diff.toFixed(2) %>
                     </p>
                   </div>
-                  <p class="overlay-beatmap-sr">
-                    <% matchBeatmaps.get(event.bmap_id).diff.toFixed(2) %>
-                  </p>
-                </div>
-                <div class="banner-overlay-bottom">
+                  <div class="banner-overlay-bottom">
                     <div></div>
                     <p class="overlay-win-condition">
                       <% event.win_condition %>
                     </p>
+                  </div>
                 </div>
-              </div>
               </a>
               <img
                 :src="`https://assets.ppy.sh/beatmaps/${matchBeatmaps.get(event.bmap_id).set_id}/covers/cover@2x.jpg`"
