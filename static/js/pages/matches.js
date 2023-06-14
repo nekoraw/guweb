@@ -1,5 +1,4 @@
 function parseGamemode(gamemode) {
-  console.log(gamemode);
   switch (gamemode.toLowerCase()) {
     case "vanilla_osu":
       return "std";
@@ -209,11 +208,9 @@ new Vue({
         return addEventParams(event);
       });
       this.$set(this, "matchEvents", matchEvents);
-      console.log(this.matchEvents);
 
       this.setupPageMetadata();
       await this.getMatchBeatmaps();
-      console.log(this.matchBeatmaps);
     },
     async getMatchPlayers() {
       const matchUsers = new Map();
