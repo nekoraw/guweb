@@ -155,11 +155,15 @@
             >
               <div class="team-points">
                 <p class="points-text">Pontos da equipe Vermelha</p>
-                <p class="red-points"><% event.redTeamPoints %></p>
+                <p class="red-points">
+                  <% event.redTeamPoints.toLocaleString() %>
+                </p>
               </div>
               <div class="team-points">
                 <p class="points-text">Pontos da equipe Azul</p>
-                <p class="blue-points"><% event.blueTeamPoints %></p>
+                <p class="blue-points">
+                  <% event.blueTeamPoints.toLocaleString() %>
+                </p>
               </div>
             </div>
           </div>
