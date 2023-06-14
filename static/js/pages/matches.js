@@ -1,12 +1,14 @@
 function getScorePoints(score, win_condition) {
   switch (win_condition) {
     case "accuracy":
-      return score.accuracy;
+      return score?.accuracy;
     case "combo":
-      return score.combo;
+      return score?.combo;
     case "scorev2":
     case "score":
-      return score.score;
+      return score?.score;
+    default:
+      return undefined;
   }
 }
 
@@ -15,16 +17,31 @@ function sortMatchScores(scores, win_condition) {
     return getScorePoints(b, win_condition) - getScorePoints(a, win_condition);
   });
 }
-
-function sortMatchTeams(event) {
+function addHeadVSParams(event) {
   const newEvent = event;
-  if (event.team_type === "head_to_head") {
-    newEvent.scores = sortMatchScores(newEvent.scores, event.win_condition);
-    return newEvent;
-  }
+
+  newEvent.scores = sortMatchScores(newEvent.scores, event.win_condition);
+
+  const minimumOneScoreExists = newEvent.scores[0] ? true : false;
+  if (!minimumOneScoreExists) return newEvent;
+
+  const firstPlacePoints =
+    getScorePoints(newEvent.scores[0], event.win_condition) || 0;
+  const secondPlacePoints =
+    getScorePoints(newEvent.scores[1], event.win_condition) || 0;
+
+  newEvent.pointDifference = Math.abs(firstPlacePoints - secondPlacePoints);
+  if (newEvent.pointDifference === 0) newEvent.winner = "tie";
+  else newEvent.winner = newEvent.scores[0].player_name;
+
+  return newEvent;
+}
+
+function addTeamVSParams(event) {
+  const newEvent = event;
+
   newEvent.redTeam = [];
   newEvent.redTeamPoints = 0;
-
   newEvent.blueTeam = [];
   newEvent.blueTeamPoints = 0;
 
@@ -40,7 +57,22 @@ function sortMatchTeams(event) {
   newEvent.redTeam = sortMatchScores(newEvent.redTeam, event.win_condition);
   newEvent.blueTeam = sortMatchScores(newEvent.blueTeam, event.win_condition);
 
+  newEvent.pointDifference = Math.abs(
+    newEvent.redTeamPoints - newEvent.blueTeamPoints
+  );
+
+  if (newEvent.pointDifference === 0) {
+    newEvent.winner = "tie";
+  } else if (newEvent.redTeamPoints > newEvent.blueTeamPoints)
+    newEvent.winner = "red";
+  else newEvent.winner = "blue";
+
   return newEvent;
+}
+
+function addEventParams(event) {
+  if (event.team_type === "head_to_head") return addHeadVSParams(event);
+  return addTeamVSParams(event);
 }
 Vue.component("score-card", {
   props: ["score", "index", "winCondition", "customClass"],
@@ -135,7 +167,7 @@ new Vue({
       );
       const matchEvents = response.data.match.map((event) => {
         if (event.type !== "beatmap_play") return event;
-        return sortMatchTeams(event);
+        return addEventParams(event);
       });
       this.$set(this, "matchEvents", matchEvents);
       console.log(this.matchEvents);

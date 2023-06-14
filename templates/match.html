@@ -163,6 +163,29 @@
                 </p>
               </div>
             </div>
+
+            <template v-if="(!event.winner)"></template>
+            <p v-else-if="(event.winner === 'tie')" class="beatmap-play-winner">
+              O jogo empatou.
+            </p>
+            <p
+              v-else-if="(event.team_type === 'team_vs')"
+              class="beatmap-play-winner"
+            >
+              A equipe <% event.winner === "red" ? "Vermelha" : "Azul" %> vence
+              por
+              <span class="won-by"
+                ><% event.pointDifference?.toLocaleString() %></span
+              >
+              pontos!
+            </p>
+            <p v-else class="beatmap-play-winner">
+              O jogador <% event.winner %> vence por
+              <span class="won-by"
+                ><% event.pointDifference?.toLocaleString() %></span
+              >
+              pontos!
+            </p>
           </div>
           <div
             class="player-leave-event"
