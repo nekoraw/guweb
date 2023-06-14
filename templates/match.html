@@ -75,6 +75,7 @@
               v-if="(matchBeatmaps?.has(event.bmap_id))"
               class="beatmap-banner"
             >
+              <a :href="`/beatmaps/${event.bmap_id}`">
               <div class="beatmap-banner-overlay">
                 <div class="banner-overlay-top">
                   <div>
@@ -93,15 +94,13 @@
                   </p>
                 </div>
                 <div class="banner-overlay-bottom">
-                  <a
-                    class="banner-overlay-button"
-                    :href="`/beatmaps/${event.bmap_id}`"
-                  >
-                    Abrir pagina do mapa
-                  </a>
-                  <p class="overlay-win-condition"><% event.win_condition %></p>
+                    <div></div>
+                    <p class="overlay-win-condition">
+                      <% event.win_condition %>
+                    </p>
                 </div>
               </div>
+              </a>
               <img
                 :src="`https://assets.ppy.sh/beatmaps/${matchBeatmaps.get(event.bmap_id).set_id}/covers/cover@2x.jpg`"
                 alt=""
