@@ -131,8 +131,9 @@ body {
 }
 .blue-team-holder,
 .red-team-holder {
-  width: 100%;
   display: flex;
+  flex-direction: column;
+  width: 100%;
   gap: 0.25rem;
 }
 
@@ -148,10 +149,10 @@ body {
   border-radius: 0.25rem;
 }
 
-.red-team-holder > .play-score {
+.red-team-holder .play-score {
   background: #5b3434;
 }
-.blue-team-holder > .play-score {
+.blue-team-holder .play-score {
   background: #343d5b;
 }
 
@@ -164,6 +165,7 @@ body {
 }
 
 .score-pfp {
+  max-width: 4rem;
   aspect-ratio: 1;
   border-radius: 0.25rem;
 }
