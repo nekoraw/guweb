@@ -231,7 +231,8 @@ body {
     width: auto;
   }
   .main-block {
-    padding: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
   .match-event > div {
     padding-left: 0;
