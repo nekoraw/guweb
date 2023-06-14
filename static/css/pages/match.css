@@ -185,6 +185,44 @@ body {
 .score-player-name {
   font-size: 1.25em;
 }
+.score-params-container {
+  position:relative;
+}
+.score-params-container:hover > .score-params {
+  opacity: 100%;
+}
+.score-params {
+  pointer-events: none;
+  position:absolute;
+  display:grid;
+  gap:0.25rem;
+  opacity: 0;
+
+  transition: 75ms;
+
+  grid-template-columns: 1fr 1fr 1fr;
+
+  padding:0.25rem;
+  background-color: rgb(55, 55, 55);
+
+  bottom:1.5rem;
+  right:0;
+
+  font-size: 0.75em;
+  border-radius: 0.25rem;
+}
+.score-param {
+  white-space: nowrap;
+  padding:0.5rem;
+  background: #505050;
+  border-radius: 0.25rem;
+  text-align: center;
+
+}
+.score-score {
+ /* font-weight: bold;  */
+ cursor: default;
+}
 .first-place-score {
   background: linear-gradient(to right, #456640, #414a40);
 }

@@ -115,15 +115,37 @@ Vue.component("score-card", {
         </div>
       </div>
       <div style="margin-left: auto; text-align: right">
-        <p
-          :class="\`score-score \${
-            (winCondition === 'score' ||
-            winCondition === 'scorev2') &&
-            'win-condition'
-          }\`"
-        >
-          <% score.score.toLocaleString() %>
-        </p>
+        <div class="score-params-container">
+          <div class="score-params">
+            <div class="score-param">
+              300: <% score.n300 %>
+            </div>
+            <div class="score-param">
+              100: <% score.n100 %>
+            </div>
+            <div class="score-param">
+              50: <% score.n50 %>
+            </div>
+            <div class="score-param">
+              Erros: <% score.nmiss %>
+            </div>
+            <div class="score-param">
+              Geki: <% score.ngeki %>
+            </div>
+            <div class="score-param">
+              Katu: <% score.nkatu %>
+            </div>
+          </div>
+          <p
+            :class="\`score-score \${
+              (winCondition === 'score' ||
+              winCondition === 'scorev2') &&
+              'win-condition'
+            }\`"
+          >
+          <span style="font-size:0.5em; color:rgba(255,255,255,0.5)">(click)</span> <% score.score.toLocaleString() %>
+          </p>
+        </div>
         <div style="display: flex; gap: 0.5rem">
        
           <p
