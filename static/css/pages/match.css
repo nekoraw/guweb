@@ -196,3 +196,29 @@ body {
 .flex-col {
   flex-direction: column;
 }
+
+@media (max-width: 800px) {
+  #app {
+    width: auto;
+  }
+  .main-block {
+    padding: 0;
+  }
+  .match-event > div {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .team-holder {
+    flex-direction: column;
+  }
+  .play-score,
+  .beatmap-banner > img,
+  .beatmap-banner-overlay,
+  .player-join-event,
+  .match-created-event,
+  .player-leave-event,
+  .match-ended-event,
+  .beatmap-play-event {
+    border-radius: 0;
+  }
+}
