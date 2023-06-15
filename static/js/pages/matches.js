@@ -45,7 +45,8 @@ function addHeadVSParams(event) {
     getScorePoints(newEvent.scores[1], event.win_condition) || 0;
 
   newEvent.pointDifference = Math.abs(firstPlacePoints - secondPlacePoints);
-  if (newEvent.pointDifference === 0 && secondPlacePoints) newEvent.winner = "tie";
+  if (newEvent.pointDifference === 0 && secondPlacePoints)
+    newEvent.winner = "tie";
   else newEvent.winner = newEvent.scores[0].player_name;
 
   return newEvent;
