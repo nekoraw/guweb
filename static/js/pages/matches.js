@@ -104,11 +104,13 @@ Vue.component("score-card", {
           "SS") %>
         </p>
       </div>
-      <img
+      <a :href="\`/u/\${score.player_id}\`">
+        <img
         class="score-pfp"
         :src="\`https://a.\${domain}/\${score.player_id}\`"
         alt=""
-      />
+        />
+      </a>
       <div
         style="
           display: flex;
