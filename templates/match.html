@@ -18,6 +18,8 @@
   dayjs.extend(window.dayjs_plugin_relativeTime);
   dayjs.extend(window.dayjs_plugin_utc);
   dayjs.locale("pt-br");
+
+  const datetimeFormating = "DD/MM/YYYY [às] HH:mm:ss";
 </script>
 
 <link rel="stylesheet" href="/static/css/pages/leaderboard.css" />
@@ -35,7 +37,9 @@
         <div class="match-event" v-for="(event, index) in matchEvents">
           <div class="player-join-event" v-if="(event.type === 'player_join')">
             <p style="text-align: center; width: 100%">
-              <span class="match-event-time"><% event.time %></span>
+              <span class="match-event-time"
+                ><%dayjs.utc(event.time).local().format(datetimeFormating)%></span
+              >
               Jogador
               <a :href="`/u/${event.player_id}`"><% event.player_name %></a> se
               juntou ao lobby.
@@ -46,7 +50,10 @@
             v-else-if="(event.type === 'match_created')"
           >
             <p style="text-align: center; width: 100%">
-              <span class="match-event-time"><% event.time %></span>
+              <span class="match-event-time"
+                ><% dayjs.utc(event.time).local().format(datetimeFormating)
+                %></span
+              >
               A partida foi criada.
             </p>
           </div>
@@ -56,7 +63,10 @@
             v-else-if="(event.type === 'change_host')"
           >
             <p style="text-align: center; width: 100%">
-              <span class="match-event-time"><% event.time %></span>
+              <span class="match-event-time"
+                ><% dayjs.utc(event.time).local().format(datetimeFormating)
+                %></span
+              >
               O host foi trocado de
               <a :href="`/u/${event.old_player}`"
                 ><% event.old_player_name %></a
@@ -193,13 +203,20 @@
               >
               pontos!
             </p>
+            <span class="match-event-time" style="text-align: center">
+              <% dayjs.utc(event.event_time).local().format(datetimeFormating)
+              %></span
+            >
           </div>
           <div
             class="player-leave-event"
             v-if="(event.type === 'player_leave')"
           >
             <p style="text-align: center; width: 100%">
-              <span class="match-event-time"><% event.time %></span>
+              <span class="match-event-time"
+                ><% dayjs.utc(event.time).local().format(datetimeFormating)
+                %></span
+              >
               Jogador
               <a :href="`/u/${event.player_id}`"><% event.player_name %></a>
               deixou a partida.
@@ -207,8 +224,11 @@
           </div>
           <div class="match-ended-event" v-if="(event.type === 'lobby_close')">
             <p style="text-align: center; width: 100%">
-              <span class="match-event-time"><% event.time %></span> A partida
-              terminou.
+              <span class="match-event-time"
+                ><% dayjs.utc(event.time).local().format(datetimeFormating)
+                %></span
+              >
+              A partida terminou.
             </p>
           </div>
         </div>
