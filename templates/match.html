@@ -1,0 +1,284 @@
+{% extends 'base.html' %} {% block title %} Match {{ match_id }} {% endblock %}
+{% block header %}
+<!DOCTYPE html>
+<script src="/static/js/asserts/vue.js"></script>
+<script src="/static/js/asserts/vue-axios.js"></script>
+<script src="/static/js/asserts/day-js/dayjs.min.js"></script>
+<script src="/static/js/asserts/day-js/locale/pt-br.js"></script>
+<script src="/static/js/asserts/day-js/plugin/relativeTime.js"></script>
+<script src="/static/js/asserts/day-js/plugin/utc.js"></script>
+
+<!-- <meta http-equiv="refresh" content="1"> -->
+<script>
+  let matchId = "{{ match_id }}";
+  let domain = "{{ domain() }}";
+  let appName = "{{ appName() }}";
+  let beatmapDownloadMirror = "{{ beatmap_download_mirror() }}";
+
+  dayjs.extend(window.dayjs_plugin_relativeTime);
+  dayjs.extend(window.dayjs_plugin_utc);
+  dayjs.locale("pt-br");
+
+  const datetimeFormating = "DD/MM/YYYY [às] HH:mm:ss";
+</script>
+
+<link rel="stylesheet" href="/static/css/pages/leaderboard.css" />
+<link rel="stylesheet" href="/static/css/pages/match.css" />
+
+{% endblock %} {% block content %}
+
+<div id="app" :class="">
+  <div
+    style="
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    "
+    :class="`main-block ${loadingFailed ? 'error' : ''}`"
+  >
+    <div v-if="(loadingFailed)">
+      <p class="match-not-found">Partida não encontrada...</p>
+      <p class="match-not-found-description">
+        A partida <% matchId %> não existe! Verifique se você digitou o id
+        correto.
+        <br />
+        Caso o id esteja certo, contate um desenvolvedor pelo discord.
+        <br /><br />
+        Você também pode tentar:
+      </p>
+      <button
+        onclick="location.reload()"
+        style="
+          margin-top: 0.5rem;
+          padding: 0.5rem;
+          border-radius: 0.25rem;
+          background-color: #242424;
+          cursor: pointer;
+
+          color: white;
+          font-size: 1.25em;
+          outline: 0;
+          border: 0;
+        "
+      >
+        Recarregar pagina
+      </button>
+    </div>
+    <template v-else>
+      <h1 id="match-title" v-if="matchEvents[0]?.name">
+        <% matchEvents[0].name %>
+      </h1>
+      <div id="match-events">
+        <div class="match-event" v-for="(event, index) in matchEvents">
+          <div class="player-join-event" v-if="(event.type === 'player_join')">
+            <p style="text-align: center; width: 100%">
+              <span class="match-event-time"
+                ><%dayjs.utc(event.time).local().format(datetimeFormating)%></span
+              >
+              Jogador
+              <a :href="`/u/${event.player_id}`"><% event.player_name %></a> se
+              juntou ao lobby.
+            </p>
+          </div>
+          <div
+            class="match-created-event"
+            v-else-if="(event.type === 'match_created')"
+          >
+            <p style="text-align: center; width: 100%">
+              <span class="match-event-time"
+                ><% dayjs.utc(event.time).local().format(datetimeFormating)
+                %></span
+              >
+              A partida foi criada.
+            </p>
+          </div>
+          <!-- host-change-event -->
+          <div
+            class="match-created-event"
+            v-else-if="(event.type === 'change_host')"
+          >
+            <p style="text-align: center; width: 100%">
+              <span class="match-event-time"
+                ><% dayjs.utc(event.time).local().format(datetimeFormating)
+                %></span
+              >
+              O host foi trocado de
+              <a :href="`/u/${event.old_player}`"
+                ><% event.old_player_name %></a
+              >
+              para
+              <a :href="`/u/${event.new_player}`"
+                ><% event.new_player_name %></a
+              >
+              .
+            </p>
+          </div>
+          <!-- beatmap-play-event -->
+          <div
+            class="beatmap-play-event"
+            v-else-if="(event.type === 'beatmap_play')"
+          >
+            <div
+              v-if="(matchBeatmaps?.has(event.bmap_id))"
+              class="beatmap-banner"
+            >
+              <a
+                :href="`/beatmapsets/${matchBeatmaps.get(event.bmap_id).set_id}/${event.gamemode.toLowerCase().replace('_','').replace('vanilla','').replace('osu', 'std')}/${event.bmap_id} `"
+              >
+                <div class="beatmap-banner-overlay">
+                  <div class="banner-overlay-top">
+                    <div>
+                      <p class="overlay-beatmap-title">
+                        <% matchBeatmaps.get(event.bmap_id).title %>
+                      </p>
+                      <p class="overlay-beatmap-version">
+                        [<% matchBeatmaps.get(event.bmap_id).version %>]
+                      </p>
+                      <p class="overlay-beatmap-gamemode">
+                        <%event.gamemode.toLowerCase().replace("_","").replace("vanilla","").replace("osu","standard")%>
+                      </p>
+                    </div>
+                    <p class="overlay-beatmap-sr">
+                      <% matchBeatmaps.get(event.bmap_id).diff.toFixed(2) %>
+                    </p>
+                  </div>
+                  <div class="banner-overlay-bottom">
+                    <i
+                      :class="`mode-icon mode-${event.gamemode.toLowerCase().replace('_','').replace('vanilla','')}`"
+                    >
+                    </i>
+                    <p class="overlay-win-condition">
+                      <% event.win_condition %>
+                    </p>
+                  </div>
+                </div>
+              </a>
+              <img
+                :src="`https://assets.ppy.sh/beatmaps/${matchBeatmaps.get(event.bmap_id).set_id}/covers/cover@2x.jpg`"
+                alt=""
+              />
+            </div>
+            <template v-if="(event.scores.length === 0)">
+              <p style="font-size: 1em; text-align: center; padding: 0.5rem">
+                Mapa abortado.
+              </p>
+            </template>
+            <template v-else>
+              <!-- TEAMS HOLDER FOR team_vs -->
+              <div class="team-holder" v-if="event.team_type === 'team_vs'">
+                <!-- RED TEAM HOLDER -->
+                <div v-if="(event.redTeam.length > 0)" class="red-team-holder">
+                  <score-card
+                    v-for="(score, index) in event.redTeam"
+                    :score="score"
+                    :index="index"
+                    :gamemode="parseGamemode(event.gamemode)"
+                    :win-condition="event.win_condition"
+                  ></score-card>
+                </div>
+                <!-- BLUE TEAM HOLDER -->
+                <div
+                  v-if="(event.blueTeam.length > 0)"
+                  class="blue-team-holder"
+                >
+                  <score-card
+                    v-for="(score, index) in event.blueTeam"
+                    :score="score"
+                    :index="index"
+                    :gamemode="parseGamemode(event.gamemode)"
+                    :win-condition="event.win_condition"
+                  ></score-card>
+                </div>
+              </div>
+              <!-- CARDS FOR head_vs -->
+              <template v-else>
+                <score-card
+                  v-for="(score, index) in event.scores"
+                  :custom-class="(index === 0 ? 'first-place-score' : 'teste')"
+                  :score="score"
+                  :index="index"
+                  :gamemode="parseGamemode(event.gamemode)"
+                  :win-condition="event.win_condition"
+                ></score-card>
+              </template>
+            </template>
+
+            <div
+              v-if="(event.team_type === 'team_vs')"
+              class="team-points-container"
+            >
+              <div class="team-points">
+                <p class="points-text">Pontos da equipe Vermelha</p>
+                <p class="red-points">
+                  <% event.redTeamPoints.toLocaleString() %>
+                </p>
+              </div>
+              <div class="team-points">
+                <p class="points-text">Pontos da equipe Azul</p>
+                <p class="blue-points">
+                  <% event.blueTeamPoints.toLocaleString() %>
+                </p>
+              </div>
+            </div>
+
+            <template v-if="(!event.winner)"></template>
+            <p v-else-if="(event.winner === 'tie')" class="beatmap-play-winner">
+              O jogo foi um empate.
+            </p>
+            <p
+              v-else-if="(event.team_type === 'team_vs')"
+              class="beatmap-play-winner"
+            >
+              A equipe <% event.winner === "red" ? "Vermelha" : "Azul" %> vence
+              por
+              <span class="won-by"
+                ><% event.pointDifference?.toLocaleString() %></span
+              >
+              <% event.win_condition.replace("v2", "") %>!
+            </p>
+            <p v-else class="beatmap-play-winner">
+              O jogador <% event.winner %> vence por
+              <span class="won-by"
+                ><% event.pointDifference?.toLocaleString() %></span
+              >
+              <% event.win_condition.replace("v2", "").replace("accuracy","acc")
+              %>!
+            </p>
+            <span class="match-event-time" style="text-align: center">
+              <% dayjs.utc(event.event_time).local().format(datetimeFormating)
+              %></span
+            >
+          </div>
+          <div
+            class="player-leave-event"
+            v-if="(event.type === 'player_leave')"
+          >
+            <p style="text-align: center; width: 100%">
+              <span class="match-event-time"
+                ><% dayjs.utc(event.time).local().format(datetimeFormating)
+                %></span
+              >
+              Jogador
+              <a :href="`/u/${event.player_id}`"><% event.player_name %></a>
+              deixou a partida.
+            </p>
+          </div>
+          <div class="match-ended-event" v-if="(event.type === 'lobby_close')">
+            <p style="text-align: center; width: 100%">
+              <span class="match-event-time"
+                ><% dayjs.utc(event.time).local().format(datetimeFormating)
+                %></span
+              >
+              A partida terminou.
+            </p>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+</div>
+<script src="/static/js/asserts/vue-flags.js"></script>
+<script src="/static/js/pages/matches.js"></script>
+{% endblock %}

@@ -1,0 +1,376 @@
+html,
+body {
+  min-height: 100vh;
+}
+.container,
+#app,
+:root {
+  --cool-border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.main-block {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  gap: 20px;
+
+  border-radius: 16px;
+  background: rgb(20, 20, 20);
+  padding: 1rem;
+
+  min-height: 80vh;
+}
+.main-block.error {
+  background: linear-gradient(to top right, #141414, #6a0000);
+}
+#match-title {
+  font-size: 2.5em;
+}
+
+/* EVENTS */
+#match-events {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+}
+.match-event {
+  width: 100%;
+}
+
+.match-event > div {
+  padding: 1rem;
+  width: 100%;
+  border-radius: 0.25rem;
+  gap: 0.5rem;
+
+  min-height: 52.5px;
+
+  background-color: #242424;
+}
+.match-event-time {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.player-join-event,
+.match-created-event,
+.player-leave-event,
+.match-ended-event,
+.beatmap-play-event {
+  display: flex;
+}
+.beatmap-play-event {
+  flex-direction: column;
+}
+
+.beatmap-banner {
+  position: relative;
+}
+.beatmap-banner > img {
+  object-fit: cover;
+  width: 100%;
+  height: 20rem;
+  border-radius: 0.25rem;
+}
+.beatmap-banner-overlay {
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+
+  cursor: pointer;
+  transition: 75ms;
+}
+.beatmap-banner-overlay:hover {
+  background-color: rgba(0, 0, 0, 0.45);
+  color: white;
+}
+.banner-overlay-top {
+  display: flex;
+  margin-bottom: auto;
+  width: 100%;
+  justify-content: space-between;
+}
+.banner-overlay-bottom {
+  display: flex;
+  margin-top: auto;
+  width: 100%;
+
+  justify-content: space-between;
+  align-items: end;
+}
+.mode-icon {
+  font-size: 2em;
+
+  width: 40px;
+  height: 40px;
+}
+.banner-overlay-button {
+  padding: 0.5rem;
+  background-color: #404040;
+  color: white;
+  border-radius: 0.25rem;
+}
+.banner-overlay-button:hover {
+  background-color: #505050;
+  color: white;
+}
+
+.overlay-beatmap-title {
+  font-size: 1.75em;
+}
+.overlay-beatmap-version {
+  font-size: 1.5em;
+}
+.overlay-beatmap-gamemode {
+  text-transform: capitalize;
+}
+.overlay-beatmap-sr {
+  font-size: 1.5em;
+  color: rgb(255, 213, 98);
+}
+.overlay-win-condition {
+  font-size: 1.5em;
+  text-transform: capitalize;
+}
+
+.team-holder {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+.blue-team-holder,
+.red-team-holder {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.play-score {
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+
+  align-items: center;
+
+  padding: 1rem;
+  background-color: #343434;
+  border-radius: 0.25rem;
+}
+
+.red-team-holder .play-score {
+  background-color: #5b3434;
+}
+.blue-team-holder .play-score {
+  background-color: #343d5b;
+}
+
+.score-start-holder {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 70px;
+}
+.score-colocation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.25rem;
+}
+.score-rank {
+  font-size: 1.75em;
+  text-align: center;
+}
+
+.score-pfp {
+  max-width: 4rem;
+  aspect-ratio: 1;
+  border-radius: 0.25rem;
+}
+.score-player-name {
+  font-size: 1.25em;
+}
+.score-mods {
+  font-size: 0.85em;
+}
+.score-params-container {
+  position: relative;
+}
+/* .score-params-container:hover > .score-params {
+  opacity: 100%;
+} */
+.score-params {
+  pointer-events: none;
+  position: absolute;
+  display: grid;
+  gap: 0.25rem;
+  opacity: 0;
+
+  transition: 75ms;
+
+  grid-template-columns: 1fr 1fr 1fr;
+
+  padding: 0.25rem;
+  background-color: rgb(55, 55, 55);
+
+  bottom: 1.5rem;
+  right: 0;
+
+  font-size: 0.75em;
+  border-radius: 0.25rem;
+}
+.score-param {
+  display: flex;
+  /* flex-wrap: wrap; */
+  gap: 0.25rem;
+
+  justify-content: end;
+  align-items: center;
+}
+.score-param-name {
+  color: rgb(233, 233, 233);
+  font-size: 0.75em;
+  font-weight: bold;
+}
+.score-param-name.x300 {
+  color: rgba(85, 229, 255, 0.75);
+}
+.score-param-name.x100 {
+  color: rgba(105, 255, 63, 0.75);
+}
+.score-param-name.x50 {
+  color: rgba(255, 163, 44, 0.75);
+}
+.score-param-name.xmiss {
+  color: rgba(255, 100, 100, 0.75);
+}
+
+.score-score {
+  /* font-weight: bold;  */
+  cursor: default;
+}
+.first-place-score {
+  background: linear-gradient(to right, #456640, #414a40);
+}
+
+.win-condition {
+  color: #b1fffa;
+}
+
+.team-points-container {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 0.5rem;
+}
+.team-points {
+  background-color: rgb(55, 55, 55);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  width: 100%;
+  text-align: center;
+}
+.team-points > .points-text {
+  color: rgba(255, 255, 255, 0.7);
+}
+.team-points > .blue-points,
+.team-points > .red-points {
+  color: white;
+  text-align: center;
+}
+
+.beatmap-play-winner {
+  padding: 0.5rem;
+  text-align: center;
+}
+.won-by {
+  font-weight: bold;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.match-not-found {
+  font-size: 2em;
+}
+.match-not-found-description {
+  text-align: center;
+  font-size: 1.25em;
+}
+.match-not-found-description > span {
+  color: rgb(255, 255, 255, 0.75);
+  font-size: 0.65em;
+}
+
+@media (max-width: 800px) {
+  #app {
+    width: auto;
+  }
+  .main-block {
+    border-radius: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .match-event > div {
+    padding-left: 0;
+    padding-right: 0;
+    justify-content: center;
+    align-items: center;
+  }
+  .team-holder {
+    flex-direction: column;
+  }
+  .play-score,
+  .beatmap-banner > img,
+  .beatmap-banner-overlay,
+  .match-event > div {
+    border-radius: 0;
+  }
+
+  /* .player-leave-event,
+  .player-join-event,
+  .match-created-event,
+  .match-ended-event {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  } */
+}
+@media (max-width: 420px) {
+  .score-param-name.combo,
+  .score-param-name.acc,
+  .score-param-name.score {
+    display: none;
+  }
+}
+@media (max-width: 380px) {
+  .score-start-holder {
+    min-width: 0;
+  }
+  .score-rank {
+    font-size: 1em;
+  }
+  .play-score {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 340px) {
+  .play-score {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .score-rank {
+    display: none;
+  }
+}
