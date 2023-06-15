@@ -17,7 +17,7 @@ function getScorePoints(score, win_condition) {
     case "accuracy":
       return score?.accuracy;
     case "combo":
-      return score?.combo;
+      return score?.max_combo;
     case "scorev2":
     case "score":
       return score?.score;
