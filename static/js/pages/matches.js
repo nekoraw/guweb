@@ -162,18 +162,18 @@ Vue.component("score-card", {
           </p>
         </div>
         <div style="display:flex; gap:0.25rem;">
-          <div>
+          <p style="text-align:center;">
             <span class="score-param-name x300">300x</span> <% score.n300 %>
-          </div>
-          <div class="">
+          </p>
+          <p style="text-align:center;">
             <span class="score-param-name x100">100x</span> <% score.n100 %>
-          </div>
-          <div class="">
+          </p>
+          <p style="text-align:center;">
             <span class="score-param-name x50">50x</span> <% score.n50 %>
-          </div>
-          <div class="">
+          </p>
+          <p style="text-align:center;">
             <span class="score-param-name xmiss">0x</span> <% score.nmiss %>
-          </div>
+          </p>
         </div>
       </div>
   `,
