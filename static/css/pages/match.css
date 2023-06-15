@@ -169,11 +169,22 @@ body {
   background-color: #343d5b;
 }
 
+.score-start-holder {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 70px;
+}
 .score-colocation {
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 0.25rem;
+}
+.score-rank {
+  font-size: 1.75em;
+  text-align: center;
 }
 
 .score-pfp {
@@ -324,7 +335,12 @@ body {
   .score-param-name.score {
     display: none;
   }
-
+  .score-start-holder {
+    min-width: 0;
+  }
+  .score-rank {
+    font-size: 1em;
+  }
   .play-score {
     padding: 0.5rem;
   }
@@ -334,5 +350,8 @@ body {
   .play-score {
     padding-left: 0;
     padding-right: 0;
+  }
+  .score-rank {
+    display: none;
   }
 }

@@ -97,7 +97,13 @@ Vue.component("score-card", {
     <div
       :class="\`play-score \${customClass}\`"
     >
-      <span class="score-colocation">#<% index + 1 %></span>
+      <div class="score-start-holder">
+        <p class="score-colocation">#<% index + 1 %></p>
+        <p :class="\`  score-rank rank-\${score.grade}\`" >
+          <% score.grade.replace("SH", "S").replace("XH", "SS").replace("X",
+          "SS") %>
+        </p>
+      </div>
       <img
         class="score-pfp"
         :src="\`https://a.\${domain}/\${score.player_id}\`"
