@@ -215,11 +215,12 @@ body {
   border-radius: 0.25rem;
 }
 .score-param {
-  white-space: nowrap;
-  padding: 0.5rem;
-  background-color: #505050;
-  border-radius: 0.25rem;
-  text-align: center;
+  display: flex;
+  /* flex-wrap: wrap; */
+  gap: 0.25rem;
+
+  justify-content: end;
+  align-items: center;
 }
 .score-param-name {
   color: rgb(233, 233, 233);
@@ -308,6 +309,7 @@ body {
   .match-event > div {
     border-radius: 0;
   }
+
   /* .player-leave-event,
   .player-join-event,
   .match-created-event,
@@ -315,4 +317,12 @@ body {
     padding-left: 0.25rem;
     padding-right: 0.25rem;
   } */
+}
+
+@media (max-width: 380px) {
+  .score-param-name.combo,
+  .score-param-name.acc,
+  .score-param-name.score {
+    display: none;
+  }
 }

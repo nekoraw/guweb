@@ -134,31 +134,31 @@ Vue.component("score-card", {
       <div style="margin-left: auto; text-align: right">
         <div class="score-params-container">
           <p
-            :class="\`score-score \${
+            :class="\`score-param score-score \${
               (winCondition === 'score' ||
               winCondition === 'scorev2') &&
               'win-condition'
             }\`"
           >
-          <% score.score.toLocaleString() %>
+            <span class="score-param-name score">score</span><% score.score.toLocaleString() %>
           </p>
         </div>
         <div style="display: flex; gap: 0.5rem; justify-content:end">
        
           <p
-            :class="\`score-max-combo \${
+            :class="\`score-param score-max-combo \${
               winCondition === 'combo' && 'win-condition'
             }\`"
           >
-            <% score.max_combo.toLocaleString() %>x
+            <span class="score-param-name combo">combo</span><% score.max_combo.toLocaleString() %>x
           </p>
 
           <p
-            :class="\`score-acc \${
+            :class="\`score-param score-acc \${
               winCondition === 'accuracy' && 'win-condition'
             }\`"
           >
-            <% score.accuracy.toFixed(2) %>%
+            <span class="score-param-name acc">acc</span><% score.accuracy.toFixed(2) %>%
           </p>
         </div>
         <div style="display:flex; gap:0.25rem;">
