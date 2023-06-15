@@ -271,6 +271,7 @@ table th {
 .flag-dropdown {
   margin-top: -41px;
   margin-left: -41px;
+  pointer-events: none;
 }
 .popover-body, .tooltip-inner, .flag-dropdown {
   font-size: 12px;
