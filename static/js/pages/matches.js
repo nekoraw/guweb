@@ -205,7 +205,7 @@ new Vue({
     async getMatchData() {
       // TODO: REMOVE HARD CODED DOMAIN
       const response = await this.$axios.get(
-        `https://api.takuji.nkrw.dev/v1/get_match?id=${matchId}`
+        `https://api.${domain}/v1/get_match?id=${matchId}`
       );
       if (!response?.data?.match) {
         return this.$set(this, "loadingFailed", true);
@@ -235,7 +235,7 @@ new Vue({
           // TODO: REMOVE HARD CODED DOMAIN
 
           const response = await this.$axios.get(
-            `https://api.takuji.nkrw.dev/v1/get_player_info`,
+            `https://api.${domain}/v1/get_player_info`,
             {
               params: {
                 id: event.player_id,
@@ -264,7 +264,7 @@ new Vue({
           // TODO: REMOVE HARD CODED DOMAIN
 
           const response = await this.$axios.get(
-            `https://api.takuji.nkrw.dev/v1/get_map_info`,
+            `https://api.${domain}/v1/get_map_info`,
             {
               params: {
                 id: event.bmap_id,
