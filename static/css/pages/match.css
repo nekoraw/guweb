@@ -295,7 +295,6 @@ body {
     padding-right: 0;
     justify-content: center;
     align-items: center;
-    gap: 1.25rem;
   }
   .team-holder {
     flex-direction: column;
