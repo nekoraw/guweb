@@ -185,6 +185,9 @@ body {
 .score-player-name {
   font-size: 1.25em;
 }
+.score-mods {
+  font-size: 0.85em;
+}
 .score-params-container {
   position: relative;
 }

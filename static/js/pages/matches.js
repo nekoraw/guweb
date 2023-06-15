@@ -117,7 +117,7 @@ Vue.component("score-card", {
             ><% score.player_name %></a
           >
         </p>
-        <div style="display: flex; gap: 0.25rem; min-height:14px">
+        <div style="display: flex; gap: 0.25rem; min-height:14px; flex-wrap:wrap;">
           <a :href="\`/leaderboard/\${gamemode}/pp/\${score.used_mods.toLowerCase().includes('rx') ? 'rx' : 'vn'}/\${score.player_country.toLowerCase()}\`">
             <div
               class="player-flag"
@@ -128,7 +128,7 @@ Vue.component("score-card", {
               </div>
             </div>
           </a>
-          <p v-if="score.used_mods.replace('V2', '').length > 0">+<% score.used_mods.replace("V2", "") %></p>
+          <p class="score-mods" v-if="score.used_mods.replace('V2', '').length > 0">+<% score.used_mods.replace("V2", "") %></p>
         </div>
       </div>
       <div style="margin-left: auto; text-align: right">
