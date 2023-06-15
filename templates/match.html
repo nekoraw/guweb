@@ -225,7 +225,7 @@
 
             <template v-if="(!event.winner)"></template>
             <p v-else-if="(event.winner === 'tie')" class="beatmap-play-winner">
-              O jogo empatou.
+              O jogo foi um empate.
             </p>
             <p
               v-else-if="(event.team_type === 'team_vs')"
@@ -236,14 +236,15 @@
               <span class="won-by"
                 ><% event.pointDifference?.toLocaleString() %></span
               >
-              pontos!
+              <% event.win_condition.replace("v2", "") %>!
             </p>
             <p v-else class="beatmap-play-winner">
               O jogador <% event.winner %> vence por
               <span class="won-by"
                 ><% event.pointDifference?.toLocaleString() %></span
               >
-              pontos!
+              <% event.win_condition.replace("v2", "").replace("accuracy","acc")
+              %>!
             </p>
             <span class="match-event-time" style="text-align: center">
               <% dayjs.utc(event.event_time).local().format(datetimeFormating)
