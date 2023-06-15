@@ -34,11 +34,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      text-align: center;
     "
     :class="`main-block ${loadingFailed ? 'error' : ''}`"
   >
-    <div v-if="(loadingFailed)">
+    <div style="text-align: center;" v-if="(loadingFailed)">
       <p class="match-not-found">Partida não encontrada...</p>
       <p class="match-not-found-description">
         A partida <% matchId %> não existe! Verifique se você digitou o id
