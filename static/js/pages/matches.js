@@ -195,6 +195,7 @@ new Vue({
       matchEvents: [],
       matchBeatmaps: new Map(),
       matchUsers: new Map(),
+      loadingFailed: false,
     };
   },
   created() {
@@ -206,6 +207,10 @@ new Vue({
       const response = await this.$axios.get(
         `https://api.takuji.nkrw.dev/v1/get_match?id=${matchId}`
       );
+      if (!response?.data?.match) {
+        return this.$set(this, "loadingFailed", true);
+      }
+
       const matchEvents = response.data.match.map((event) => {
         if (event.type !== "beatmap_play") return event;
         return addEventParams(event);

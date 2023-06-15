@@ -28,8 +28,45 @@
 {% endblock %} {% block content %}
 
 <div id="app" :class="">
-  <div class="main-block">
-    <template>
+  <div
+    style="
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    "
+    class="main-block"
+  >
+    <div v-if="(loadingFailed === true)">
+      <p class="match-not-found">Partida não encontrada...</p>
+      <p class="match-not-found-description">
+        A partida <% matchId %> não existe! Verifique se você digitou o id
+        correto.
+        <br />
+        Caso o id esteja certo, contate um desenvolvedor pelo discord.
+        <br /><br />
+        Você também pode tentar:
+      </p>
+      <button
+        onclick="location.reload()"
+        style="
+          margin-top: 0.5rem;
+          padding: 0.5rem;
+          border-radius: 0.25rem;
+          background-color: #242424;
+          cursor: pointer;
+
+          color: white;
+          font-size: 1.25em;
+          outline: 0;
+          border: 0;
+        "
+      >
+        Recarregar pagina
+      </button>
+    </div>
+    <template v-else>
       <h1 id="match-title" v-if="matchEvents[0]?.name">
         <% matchEvents[0].name %>
       </h1>
@@ -88,7 +125,7 @@
               class="beatmap-banner"
             >
               <a
-                :href="`/beatmapsets/${matchBeatmaps.get(event.bmap_id).set_id}/${event.gamemode.toLowerCase().replace('_','').replace('vanilla','').replace('osu', 'std')}/${event.bmap_id}`"
+                :href="`/beatmapsets/${matchBeatmaps.get(event.bmap_id).set_id}/${event.gamemode.toLowerCase().replace('_','').replace('vanilla','').replace('osu', 'std')}/${event.bmap_id} `"
               >
                 <div class="beatmap-banner-overlay">
                   <div class="banner-overlay-top">

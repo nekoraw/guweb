@@ -31,6 +31,8 @@ body {
   border-radius: 16px;
   background-color: rgb(20, 20, 20);
   padding: 1rem;
+
+  min-height: 80vh;
 }
 
 #match-title {
@@ -54,6 +56,8 @@ body {
   width: 100%;
   border-radius: 0.25rem;
   gap: 0.5rem;
+
+  min-height: 52.5px;
 
   background-color: #242424;
 }
@@ -306,6 +310,18 @@ body {
 
 .flex-col {
   flex-direction: column;
+}
+
+.match-not-found {
+  font-size: 2em;
+}
+.match-not-found-description {
+  text-align: center;
+  font-size: 1.25em;
+}
+.match-not-found-description > span {
+  color: rgb(255, 255, 255, 0.75);
+  font-size: 0.65em;
 }
 
 @media (max-width: 800px) {
