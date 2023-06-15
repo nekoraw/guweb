@@ -87,7 +87,9 @@
               v-if="(matchBeatmaps?.has(event.bmap_id))"
               class="beatmap-banner"
             >
-              <a :href="`/beatmaps/${event.bmap_id}`">
+              <a
+                :href="`/beatmapsets/${matchBeatmaps.get(event.bmap_id).set_id}/${event.gamemode.toLowerCase().replace('_','').replace('vanilla','').replace('osu', 'std')}/${event.bmap_id}`"
+              >
                 <div class="beatmap-banner-overlay">
                   <div class="banner-overlay-top">
                     <div>
