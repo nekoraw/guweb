@@ -328,13 +328,14 @@ body {
     padding-right: 0.25rem;
   } */
 }
-
-@media (max-width: 380px) {
+@media (max-width: 420px) {
   .score-param-name.combo,
   .score-param-name.acc,
   .score-param-name.score {
     display: none;
   }
+}
+@media (max-width: 380px) {
   .score-start-holder {
     min-width: 0;
   }
