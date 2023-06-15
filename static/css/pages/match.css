@@ -325,4 +325,15 @@ body {
   .score-param-name.score {
     display: none;
   }
+
+  .play-score {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 340px) {
+  .play-score {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
