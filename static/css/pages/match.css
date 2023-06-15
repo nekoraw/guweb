@@ -16,12 +16,14 @@ body {
   gap: 20px;
 
   border-radius: 16px;
-  background-color: rgb(20, 20, 20);
+  background: rgb(20, 20, 20);
   padding: 1rem;
 
   min-height: 80vh;
 }
-
+.main-block.error {
+  background: linear-gradient(to top right, #141414, #6a0000);
+}
 #match-title {
   font-size: 2.5em;
 }
