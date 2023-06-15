@@ -121,7 +121,7 @@ Vue.component("score-card", {
           <a :href="\`/leaderboard/\${gamemode}/pp/\${score.used_mods.toLowerCase().includes('rx') ? 'rx' : 'vn'}/\${score.player_country.toLowerCase()}\`">
             <div
               class="player-flag"
-              :style="\`background-image:url('/static/images/flags/\${score.player_country.toUpperCase()}.png'); margin-right:0; width:20px; height:14px;\`"
+              :style="\`background-image:url('/static/images/flags/\${score.player_country.toUpperCase()}.png'); margin-right:0;\`"
             >
               <div class="flag-dropdown">
                 <% flags[score.player_country.toUpperCase()] %>
@@ -133,26 +133,6 @@ Vue.component("score-card", {
       </div>
       <div style="margin-left: auto; text-align: right">
         <div class="score-params-container">
-          <div class="score-params">
-            <div class="score-param">
-              300: <% score.n300 %>
-            </div>
-            <div class="score-param">
-              100: <% score.n100 %>
-            </div>
-            <div class="score-param">
-              50: <% score.n50 %>
-            </div>
-            <div class="score-param">
-              Erros: <% score.nmiss %>
-            </div>
-            <div class="score-param">
-              Geki: <% score.ngeki %>
-            </div>
-            <div class="score-param">
-              Katu: <% score.nkatu %>
-            </div>
-          </div>
           <p
             :class="\`score-score \${
               (winCondition === 'score' ||
@@ -160,10 +140,10 @@ Vue.component("score-card", {
               'win-condition'
             }\`"
           >
-          <span style="font-size:0.5em; color:rgba(255,255,255,0.5)">(click)</span> <% score.score.toLocaleString() %>
+          <% score.score.toLocaleString() %>
           </p>
         </div>
-        <div style="display: flex; gap: 0.5rem">
+        <div style="display: flex; gap: 0.5rem; justify-content:end">
        
           <p
             :class="\`score-max-combo \${
@@ -180,6 +160,20 @@ Vue.component("score-card", {
           >
             <% score.accuracy.toFixed(2) %>%
           </p>
+        </div>
+        <div style="display:flex; gap:0.25rem;">
+          <div>
+            <span class="score-param-name x300">300x</span> <% score.n300 %>
+          </div>
+          <div class="">
+            <span class="score-param-name x100">100x</span> <% score.n100 %>
+          </div>
+          <div class="">
+            <span class="score-param-name x50">50x</span> <% score.n50 %>
+          </div>
+          <div class="">
+            <span class="score-param-name xmiss">0x</span> <% score.nmiss %>
+          </div>
         </div>
       </div>
   `,

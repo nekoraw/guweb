@@ -155,7 +155,7 @@ body {
   display: flex;
   gap: 0.5rem;
 
-  max-height: 75px;
+  align-items: center;
 
   padding: 1rem;
   background: #343434;
@@ -186,42 +186,59 @@ body {
   font-size: 1.25em;
 }
 .score-params-container {
-  position:relative;
+  position: relative;
 }
-.score-params-container:hover > .score-params {
+/* .score-params-container:hover > .score-params {
   opacity: 100%;
-}
+} */
 .score-params {
   pointer-events: none;
-  position:absolute;
-  display:grid;
-  gap:0.25rem;
+  position: absolute;
+  display: grid;
+  gap: 0.25rem;
   opacity: 0;
 
   transition: 75ms;
 
   grid-template-columns: 1fr 1fr 1fr;
 
-  padding:0.25rem;
+  padding: 0.25rem;
   background-color: rgb(55, 55, 55);
 
-  bottom:1.5rem;
-  right:0;
+  bottom: 1.5rem;
+  right: 0;
 
   font-size: 0.75em;
   border-radius: 0.25rem;
 }
 .score-param {
   white-space: nowrap;
-  padding:0.5rem;
+  padding: 0.5rem;
   background: #505050;
   border-radius: 0.25rem;
   text-align: center;
-
 }
+.score-param-name {
+  color: rgb(233, 233, 233);
+  font-size: 0.75em;
+  font-weight: bold;
+}
+.score-param-name.x300 {
+  color: rgba(85, 229, 255, 0.75);
+}
+.score-param-name.x100 {
+  color: rgba(105, 255, 63, 0.75);
+}
+.score-param-name.x50 {
+  color: rgba(255, 163, 44, 0.75);
+}
+.score-param-name.xmiss {
+  color: rgba(255, 100, 100, 0.75);
+}
+
 .score-score {
- /* font-weight: bold;  */
- cursor: default;
+  /* font-weight: bold;  */
+  cursor: default;
 }
 .first-place-score {
   background: linear-gradient(to right, #456640, #414a40);
