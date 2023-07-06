@@ -57,19 +57,19 @@ const total = fetch('https://api.{{ domain() }}/v1/get_player_count').then((res)
 
           <p>Temos <a id='online-users'></a> jogadores online e <a id='total-users'></a> registrados.</p>
         </h2>
-        {% if not session.authenticated %}
         <div class="buttons">
+          {% if not session.authenticated %}
           <a class="button is-primary" href="/register">
             <strong>Cadastrar-se</strong>
           </a>
           <a class="button is-light" href="/login">
             Fazer Login
           </a>
+          {% endif %}
           <a class="button is-light" href="/connect">
             Como me conectar?
           </a>
         </div>
-        {% endif %}
       </div>
       <div class="column flex flex-lcenter" id="mascot">
         <div class="gulag-avatar"></div>
