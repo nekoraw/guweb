@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %} Como se conectar {% endblock %}
+
+{% block header %}
+<link rel="stylesheet" href="/static/css/pages/verify.css">
+{% endblock %}
+
+{% block content %}
+<div class="main-block is-marginless is-paddingless is-auth">
+    <div class="columns pm-reset is-weeb">
+        <div class="column title-block">
+            <div class="titlewithsub">
+                <h1 class="title is-left">Como se conectar?</h1>
+            </div>
+        </div>
+        <div class="column icon-block">
+            <i class="fas fa-user-circle is-headericon"></i>
+        </div>
+    </div>
+    <div class="columns pm-reset flex-lcenter is-block">
+        <div class="box is-padding">
+            <div class="bordertitle">
+                <div class="titlewithsub">
+                    <h1 class="title is-left">Criação do atalho</h1>
+                    <h2 class="subtitle">Siga esses três passos simples para começar a jogar no {{ appName() }}!</h2>
+                </div>
+            </div>
+            <div class="howto-content">
+                <div class="columns is-paddingless is-marginless">
+                    <div class="column" id="howto">
+                        <img class="thumbnail" src="/static/images/v1.png" />
+                        <div class="howto-info flex">
+                            <div class="big-number flex flex-lcenter flex-vcenter">
+                                <div class="howto-number">1</div>
+                            </div>
+                            <div class="howto-withsub">
+                                <h1 class="title is-left">Abra o Powershell.</h1>
+                                <h2 class="subtitle">Aperte o botão do Windows, digite Powershell e o abra.</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column" id="howto">
+						<div class="flex thumbnail">Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex "&{$((New-Object System.Net.WebClient).DownloadString('https://gist.githubusercontent.com/nekoraw/4324949d847626e3dd91e92d9c370a23/raw/fbd34e7456b56b722c48299a15ec17330a36d962/create-takuji-shortcut.ps1'))} global"
+						</div>
+                        <div class="howto-info flex">
+                            <div class="big-number flex flex-lcenter flex-vcenter">
+                                <div class="howto-number">2</div>
+                            </div>
+                            <div class="howto-withsub">
+                                <h1 class="title is-left">Copie e cole o código acima no Powershell.</h1>
+                                <h2 class="subtitle">Você pode revisar o código que vai ser executado <a href="https://gist.github.com/nekoraw/4324949d847626e3dd91e92d9c370a23">aqui</a>.</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column" id="howto">
+                        <img class="thumbnail" src="/static/images/v3.png" />
+                        <div class="howto-info flex">
+                            <div class="big-number flex flex-lcenter flex-vcenter">
+                                <div class="howto-number">3</div>
+                            </div>
+                            <div class="howto-withsub">
+                                <h1 class="title is-left">Selecione o seu osu!.exe</h1>
+                                <h2 class="subtitle">Agora é só abrir o atalho na sua área de trabalho e começar a jogar!</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bordertitle">
+                <div class="titlewithsub">
+                    <h1 class="title is-left">Putz! Não entendi algum passo, me ajuda!</h1>
+                    <h2 class="subtitle">Precisa de ajuda? Entre no nosso Discord!</h2>
+                </div>
+            </div>
+            <div class="box flex is-mpadding is-marginless">
+                <a href="https://discord.gg/3VRRhkVk7W" class="flex" id="discord"><img
+                        src="https://cdn.iconscout.com/icon/free/png-256/discord-2752210-2285027.png"
+                        class="discord-logo">
+                    <div class="clickhere-title flex flex-vcenter">
+                        <h1 class="title">Clique aqui para unir-se ao nosso Discord!</h1>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
