@@ -128,7 +128,11 @@ button:focus {
     width: 239.67px;
     height: 136px;
     object-fit: cover;
-    border-radius: 6px;
+    border-radius: 3px;
+    word-break: break-all;
+    text-align: start;
+    font-size: 10px;
+    background-color: #201f20;
 }
 
 .howto-info {

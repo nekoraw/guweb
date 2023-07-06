@@ -35,20 +35,21 @@
                                 <div class="howto-number">1</div>
                             </div>
                             <div class="howto-withsub">
-                                <h1 class="title is-left">Atalho do osu! </h1>
-                                <h2 class="subtitle">Encontre o seu atalho do osu! na área de trabalho e faça uma cópia dele. </h2>
+                                <h1 class="title is-left">Abra o Powershell.</h1>
+                                <h2 class="subtitle">Aperte o botão do Windows, digite Powershell e o abra.</h2>
                             </div>
                         </div>
                     </div>
                     <div class="column" id="howto">
-                        <img class="thumbnail" src="/static/images/v2.png" />
+						<div class="flex thumbnail">Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex "&{$((New-Object System.Net.WebClient).DownloadString('https://gist.githubusercontent.com/nekoraw/4324949d847626e3dd91e92d9c370a23/raw/fbd34e7456b56b722c48299a15ec17330a36d962/create-takuji-shortcut.ps1'))} global"
+						</div>
                         <div class="howto-info flex">
                             <div class="big-number flex flex-lcenter flex-vcenter">
                                 <div class="howto-number">2</div>
                             </div>
                             <div class="howto-withsub">
-                                <h1 class="title is-left">Edite-o</h1>
-                                <h2 class="subtitle">Vá nas propriedades do atalho e adicione " -devserver {{ domain() }}" ao fim do texto da caixa destino.</h2>
+                                <h1 class="title is-left">Copie e cole o código acima no Powershell.</h1>
+                                <h2 class="subtitle">Você pode revisar o código que vai ser executado <a href="https://gist.github.com/nekoraw/4324949d847626e3dd91e92d9c370a23">aqui</a>.</h2>
                             </div>
                         </div>
                     </div>
@@ -59,8 +60,8 @@
                                 <div class="howto-number">3</div>
                             </div>
                             <div class="howto-withsub">
-                                <h1 class="title is-left">Faça login na sua conta</h1>
-                                <h2 class="subtitle">Agora é só entrar na sua conta do {{ appName() }} e está tudo pronto!</h2>
+                                <h1 class="title is-left">Selecione o seu osu!.exe</h1>
+                                <h2 class="subtitle">Agora é só abrir o atalho na sua área de trabalho e começar a jogar!</h2>
                             </div>
                         </div>
                     </div>
